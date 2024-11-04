@@ -7,16 +7,17 @@ function App() {
     const [personalInfo, setPersonalInfo] = useState(info);
     const [educationInfo, setEducationInfo] = useState([]);
     const personalHandlers = {
-        firstName: (e) => setPersonalInfo({ ...personalInfo, firstName: e.target.value }),
-        lastName: (e) => setPersonalInfo({ ...personalInfo, lastName: e.target.value }),
-        email: (e) => setPersonalInfo({ ...personalInfo, email: e.target.value }),
-        phone: (e) => setPersonalInfo({ ...personalInfo, phone: e.target.value }),
-        gitHub: (e) => setPersonalInfo({ ...personalInfo, gitHub: e.target.value }),
-        linkedIn: (e) => setPersonalInfo({ ...personalInfo, linkedIn: e.target.value }),
+        copy: { ...personalInfo },
+        update: () => setPersonalInfo(personalHandlers.copy),
+        edit: ({ key, value }) => {
+            personalHandlers.copy[key] = value;
+            personalHandlers.update();
+        },
     };
     const educationHandlers = {
         copy: Array.from(educationInfo),
         numberOfItems: educationInfo.length,
+        update: () => setEducationInfo(educationHandlers.copy),
         add: () => {
             educationHandlers.copy.push({
                 address: '',
@@ -24,8 +25,11 @@ function App() {
                 startDate: '',
                 endDate: '',
             });
-
-            setEducationInfo(educationHandlers.copy);
+            educationHandlers.update();
+        },
+        edit: ({ key, value, index }) => {
+            educationHandlers.copy[index][key] = value;
+            educationHandlers.update();
         },
     };
 
