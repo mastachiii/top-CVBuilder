@@ -20,7 +20,9 @@ function Personal({ handlers }) {
 function Editor({ personalHandlers }) {
     return (
         <div>
-            <Personal handlers={personalHandlers} />
+            <h3>
+                Personal Information: <Personal handlers={personalHandlers} />
+            </h3>
         </div>
     );
 }
