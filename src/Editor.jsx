@@ -101,7 +101,33 @@ function Employment({ handlers, index }) {
     );
 }
 
-function Editor({ personalHandlers, educationHandlers, employmentHandlers }) {
+function Project({ handlers, index }) {
+    const [details, setDetails] = useState({
+        text: '',
+        list: [],
+    });
+    const handleName = (e) => handlers.edit({ value: e.target.value, index: index, key: 'name' });
+    const handleLink = (e) => handlers.edit({ value: e.target.value, index: index, key: 'link' });
+    const handleDetailsChange = (e) => setDetails({ ...details, text: e.target.value });
+    const handleDetailsSubmit = (e) => {
+        const detailCopy = { ...details };
+        detailCopy.list.push(detailCopy.text);
+        detailCopy.text = '';
+        handlers.edit({ value: detailCopy.list, index: index, key: 'details' });
+        setDetails(detailCopy);
+    };
+
+    return (
+        <div>
+            <Input text='Name' onChange={handleName} />
+            <Input text='Link' onChange={handleLink} />
+            <Input text='Details' onChange={handleDetailsChange} />
+            <Button text='Add' onClick={handleDetailsSubmit} />
+        </div>
+    );
+}
+
+function Editor({ personalHandlers, educationHandlers, employmentHandlers, projectHandlers }) {
     const makeForm = ({ handlers, Component, text }) => {
         const form = [];
 
@@ -123,11 +149,13 @@ function Editor({ personalHandlers, educationHandlers, employmentHandlers }) {
         <div>
             <Button text='Add Education' onClick={educationHandlers.add} />
             <Button text='Add Employment' onClick={employmentHandlers.add} />
+            <Button text='Add Project' onClick={projectHandlers.add} />
             <h3>
                 Personal Information: <Personal handlers={personalHandlers} />
             </h3>
             {makeForm({ handlers: educationHandlers, Component: Education, text: 'Education' })}
             {makeForm({ handlers: employmentHandlers, Component: Employment, text: 'Employment' })}
+            {makeForm({ handlers: projectHandlers, Component: Project, text: 'Project' })}
         </div>
     );
 }

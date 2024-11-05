@@ -7,6 +7,7 @@ function App() {
     const [personalInfo, setPersonalInfo] = useState(info);
     const [educationInfo, setEducationInfo] = useState([]);
     const [employmentInfo, setEmploymentInfo] = useState([]);
+    const [projectsInfo, setProjectsInfo] = useState([]);
     const personalHandlers = {
         copy: { ...personalInfo },
         update: () => setPersonalInfo(personalHandlers.copy),
@@ -51,7 +52,24 @@ function App() {
         edit: ({ key, value, index }) => {
             employmentHandlers.copy[index][key] = value;
             employmentHandlers.update();
-            console.log(employmentInfo)
+        },
+    };
+    const projectHandlers = {
+        copy: Array.from(projectsInfo),
+        numberOfItems: projectsInfo.length,
+        update: () => setProjectsInfo(projectHandlers.copy),
+        add: () => {
+            projectHandlers.copy.push({
+                name: '',
+                link: '',
+                details: [],
+            });
+            projectHandlers.update();
+        },
+        edit: ({ key, value, index }) => {
+            projectHandlers.copy[index][key] = value;
+            projectHandlers.update();
+            console.log(projectsInfo);
         },
     };
 
@@ -61,6 +79,7 @@ function App() {
                 personalHandlers={personalHandlers}
                 educationHandlers={educationHandlers}
                 employmentHandlers={employmentHandlers}
+                projectHandlers={projectHandlers}
             />
             <Preview
                 personalInfo={personalInfo}
