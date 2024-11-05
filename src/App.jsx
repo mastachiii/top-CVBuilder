@@ -85,6 +85,7 @@ function App() {
                 personalInfo={personalInfo}
                 educationInfo={educationInfo}
                 employmentInfo={employmentInfo}
+                projectsInfo={projectsInfo}
             />
         </>
     );

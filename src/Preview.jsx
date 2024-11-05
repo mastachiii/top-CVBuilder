@@ -33,9 +33,25 @@ function Employment({ position, company, startDate, endDate, details }) {
             <p>{company}</p>
             <p>{startDate}</p>
             <p>{endDate}</p>
-            {details.map((item, index) => (
-                <li key={index}>{item}</li>
-            ))}
+            <ul>
+                {details.map((item, index) => (
+                    <li key={index}>{item}</li>
+                ))}
+            </ul>
+        </>
+    );
+}
+
+function Project({ name, link, details }) {
+    return (
+        <>
+            <p>{name}</p>
+            <a href={link}>{link}</a>
+            <ul>
+                {details.map((item, index) => (
+                    <li key={index}>{item}</li>
+                ))}
+            </ul>
         </>
     );
 }
@@ -44,6 +60,7 @@ function Preview(props) {
     const personalInfo = props.personalInfo;
     const educationInfo = props.educationInfo;
     const employmentInfo = props.employmentInfo;
+    const projectsInfo = props.projectsInfo;
 
     return (
         <div>
@@ -80,6 +97,9 @@ function Preview(props) {
                         key={index}
                     />
                 );
+            })}
+            {projectsInfo.map((item, index) => {
+                return <Project name={item.name} link={item.link} details={item.details} />;
             })}
         </div>
     );
