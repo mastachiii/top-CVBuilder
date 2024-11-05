@@ -24,7 +24,7 @@ function App() {
                 schoolName: '',
                 startDate: '',
                 endDate: '',
-                details: '',
+                details: [],
             });
             educationHandlers.update();
         },
@@ -37,7 +37,7 @@ function App() {
     return (
         <>
             <Editor personalHandlers={personalHandlers} educationHandlers={educationHandlers} />
-            <Preview personalInfo={personalInfo} />
+            <Preview personalInfo={personalInfo} educationInfo={educationInfo} />
         </>
     );
 }

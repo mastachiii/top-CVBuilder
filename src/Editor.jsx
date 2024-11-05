@@ -45,9 +45,7 @@ function Education({ handlers, index }) {
         handlers.edit({ value: e.target.value, index: index, key: 'startDate' });
     const handleEndDate = (e) =>
         handlers.edit({ value: e.target.value, index: index, key: 'endDate' });
-    const handleDetailsChange = (e) => {
-        setDetails({ ...details, text: e.target.value });
-    };
+    const handleDetailsChange = (e) => setDetails({ ...details, text: e.target.value });
     const handleDetailsSubmit = (e) => {
         const detailCopy = { ...details };
         detailCopy.list.push(detailCopy.text);
@@ -55,7 +53,7 @@ function Education({ handlers, index }) {
         handlers.edit({ value: detailCopy.list, index: index, key: 'details' });
         setDetails(detailCopy);
     };
-    
+
     return (
         <div>
             <Input text='Address' onChange={handleAddress} />

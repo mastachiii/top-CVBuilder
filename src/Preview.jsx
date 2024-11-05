@@ -10,8 +10,28 @@ function Person({ firstName, lastName, email, phone, gitHub, linkedIn }) {
     );
 }
 
+function Education({ address, schoolName, startDate, endDate, details }) {
+    console.log(details);
+    return (
+        <>
+            <p>{address}</p>
+            <p>{schoolName}</p>
+            <p>{startDate}</p>
+            <p>{endDate}</p>
+            <ul>
+                {details.map((item) => (
+                    <li>{item}</li>
+                ))}
+            </ul>
+        </>
+    );
+}
+
 function Preview(props) {
     const personalInfo = props.personalInfo;
+    const educationInfo = props.educationInfo;
+
+    console.log(educationInfo);
     return (
         <div>
             <h1>Personal Information</h1>
@@ -24,6 +44,17 @@ function Preview(props) {
                 linkedIn={personalInfo.linkedIn}
             />
             <h1>Education</h1>
+            {educationInfo.map((item) => {
+                return (
+                    <Education
+                        address={item.address}
+                        schoolName={item.schoolName}
+                        startDate={item.startDate}
+                        endDate={item.endDate}
+                        details={item.details}
+                    />
+                );
+            })}
         </div>
     );
 }
