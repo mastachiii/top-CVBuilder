@@ -31,7 +31,6 @@ function Preview(props) {
     const personalInfo = props.personalInfo;
     const educationInfo = props.educationInfo;
 
-    console.log(educationInfo);
     return (
         <div>
             <h1>Personal Information</h1>
@@ -44,7 +43,7 @@ function Preview(props) {
                 linkedIn={personalInfo.linkedIn}
             />
             <h1>Education</h1>
-            {educationInfo.map((item) => {
+            {educationInfo.map((item, index) => {
                 return (
                     <Education
                         address={item.address}
@@ -52,6 +51,7 @@ function Preview(props) {
                         startDate={item.startDate}
                         endDate={item.endDate}
                         details={item.details}
+                        key={index}
                     />
                 );
             })}

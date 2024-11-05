@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Fragment } from 'react';
 
 function Input({ type = 'text', text, value, onChange }) {
     return <input type={type} placeholder={text} onChange={onChange} value={value}></input>;
@@ -60,30 +61,51 @@ function Education({ handlers, index }) {
             <Input text='School Name' onChange={handleSchoolName} />
             <Input text='Start Date' onChange={handleStartDate} />
             <Input text='End Date' onChange={handleEndDate} />
-            <Input text='Key Details' onChange={handleDetailsChange} value={details.text} />
+            <Input text='Details' onChange={handleDetailsChange} value={details.text} />
             <Button text='Add' onClick={handleDetailsSubmit} />
         </div>
     );
 }
 
-function Editor({ personalHandlers, educationHandlers }) {
-    const educationForm = (() => {
+function Employment({ handlers, index }) {
+    return (
+        <div>
+            <Input text='Position' onChange={null} />
+            <Input text='Company' onChange={null} />
+            <Input text='Start Date' onChange={null} />
+            <Input text='End Date' onChange={null} />
+            <Input text='Details' onChange={null} />
+        </div>
+    );
+}
+
+function Editor({ personalHandlers, educationHandlers, employmentHandlers }) {
+    const makeForm = ({ handlers, Component }) => {
         const form = [];
 
-        for (let i = 0; i < educationHandlers.numberOfItems; i++) {
-            form.push(<Education handlers={educationHandlers} key={i} index={i} />);
+        for (let i = 0; i < handlers.numberOfItems; i++) {
+            form.push(
+                <Fragment key={i}>
+                    <h3>
+                        Education:
+                        <Component handlers={handlers} index={i} />
+                    </h3>
+                </Fragment>
+            );
         }
 
         return form;
-    })();
-
+    };
+    
     return (
         <div>
-            <Button text='Add' onClick={educationHandlers.add} />
+            <Button text='Add Education' onClick={educationHandlers.add} />
+            <Button text='Add Employment' onClick={employmentHandlers.add} />
             <h3>
                 Personal Information: <Personal handlers={personalHandlers} />
             </h3>
-            {educationForm}
+            {makeForm({ handlers: educationHandlers, Component: Education })}
+            {makeForm({ handlers: employmentHandlers, Component: Employment })}
         </div>
     );
 }

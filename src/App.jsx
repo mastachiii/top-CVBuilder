@@ -6,6 +6,7 @@ import { Preview } from './Preview';
 function App() {
     const [personalInfo, setPersonalInfo] = useState(info);
     const [educationInfo, setEducationInfo] = useState([]);
+    const [employmentInfo, setEmploymentInfo] = useState([]);
     const personalHandlers = {
         copy: { ...personalInfo },
         update: () => setPersonalInfo(personalHandlers.copy),
@@ -33,10 +34,34 @@ function App() {
             educationHandlers.update();
         },
     };
+    const employmentHandlers = {
+        copy: Array.from(employmentInfo),
+        numberOfItems: employmentInfo.length,
+        update: () => setEmploymentInfo(employmentHandlers.copy),
+        add: () => {
+            employmentHandlers.copy.push({
+                position: '',
+                company: '',
+                startDate: '',
+                endDate: '',
+                details: [],
+            });
+            employmentHandlers.update();
+            console.log(employmentInfo);
+        },
+        edit: ({ key, value, index }) => {
+            employmentHandlers.copy[index][key] = value;
+            employmentHandlers.update();
+        },
+    };
 
     return (
         <>
-            <Editor personalHandlers={personalHandlers} educationHandlers={educationHandlers} />
+            <Editor
+                personalHandlers={personalHandlers}
+                educationHandlers={educationHandlers}
+                employmentHandlers={employmentHandlers}
+            />
             <Preview personalInfo={personalInfo} educationInfo={educationInfo} />
         </>
     );
