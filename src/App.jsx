@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { personalInfo as info } from './data';
-import { Editor } from './editor';
-import { Preview } from './preview';
+import { Editor } from './Editor';
+import { Preview } from './Preview';
 
 function App() {
     const [personalInfo, setPersonalInfo] = useState(info);
@@ -24,6 +24,7 @@ function App() {
                 schoolName: '',
                 startDate: '',
                 endDate: '',
+                details: '',
             });
             educationHandlers.update();
         },

@@ -1,5 +1,7 @@
-function Input({ type = 'text', text, onChange }) {
-    return <input type={type} placeholder={text} onChange={onChange}></input>;
+import { useState } from 'react';
+
+function Input({ type = 'text', text, value, onChange }) {
+    return <input type={type} placeholder={text} onChange={onChange} value={value}></input>;
 }
 
 function Button({ type = 'button', text, onClick }) {
@@ -31,6 +33,10 @@ function Personal({ handlers }) {
 }
 
 function Education({ handlers, index }) {
+    const [details, setDetails] = useState({
+        text: '',
+        list: [],
+    });
     const handleAddress = (e) =>
         handlers.edit({ value: e.target.value, index: index, key: 'address' });
     const handleSchoolName = (e) =>
@@ -39,13 +45,25 @@ function Education({ handlers, index }) {
         handlers.edit({ value: e.target.value, index: index, key: 'startDate' });
     const handleEndDate = (e) =>
         handlers.edit({ value: e.target.value, index: index, key: 'endDate' });
-
+    const handleDetailsChange = (e) => {
+        setDetails({ ...details, text: e.target.value });
+    };
+    const handleDetailsSubmit = (e) => {
+        const detailCopy = { ...details };
+        detailCopy.list.push(detailCopy.text);
+        detailCopy.text = '';
+        handlers.edit({ value: detailCopy.list, index: index, key: 'details' });
+        setDetails(detailCopy);
+    };
+    
     return (
         <div>
             <Input text='Address' onChange={handleAddress} />
             <Input text='School Name' onChange={handleSchoolName} />
             <Input text='Start Date' onChange={handleStartDate} />
             <Input text='End Date' onChange={handleEndDate} />
+            <Input text='Key Details' onChange={handleDetailsChange} value={details.text} />
+            <Button text='Add' onClick={handleDetailsSubmit} />
         </div>
     );
 }
@@ -55,7 +73,7 @@ function Editor({ personalHandlers, educationHandlers }) {
         const form = [];
 
         for (let i = 0; i < educationHandlers.numberOfItems; i++) {
-            form.push(<Education handlers={educationHandlers} index={i} />);
+            form.push(<Education handlers={educationHandlers} key={i} index={i} />);
         }
 
         return form;
