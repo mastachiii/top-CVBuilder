@@ -102,6 +102,7 @@ function App() {
                 educationInfo={educationInfo}
                 employmentInfo={employmentInfo}
                 projectsInfo={projectsInfo}
+                technicalInfo={technicalInfo}
             />
         </>
     );

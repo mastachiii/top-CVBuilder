@@ -56,12 +56,22 @@ function Project({ name, link, details }) {
     );
 }
 
+function Technical({ languages, frameworks, tools }) {
+    return (
+        <ul>
+            <li>Languages: {languages.join(', ')}</li>
+            <li>Frameworks and Libraries: {frameworks.join(', ')}</li>
+            <li>Tools: {tools.join(', ')}</li>
+        </ul>
+    );
+}
 
 function Preview(props) {
     const personalInfo = props.personalInfo;
     const educationInfo = props.educationInfo;
     const employmentInfo = props.employmentInfo;
     const projectsInfo = props.projectsInfo;
+    const technicalInfo = props.technicalInfo;
 
     return (
         <div>
@@ -107,6 +117,11 @@ function Preview(props) {
                 );
             })}
             <h1>Technical Info</h1>
+            <Technical
+                languages={technicalInfo.languages}
+                frameworks={technicalInfo.frameworks}
+                tools={technicalInfo.tools}
+            />
         </div>
     );
 }
