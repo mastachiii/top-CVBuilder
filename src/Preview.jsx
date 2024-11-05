@@ -11,7 +11,6 @@ function Person({ firstName, lastName, email, phone, gitHub, linkedIn }) {
 }
 
 function Education({ address, schoolName, startDate, endDate, details }) {
-    console.log(details);
     return (
         <>
             <p>{address}</p>
@@ -19,10 +18,24 @@ function Education({ address, schoolName, startDate, endDate, details }) {
             <p>{startDate}</p>
             <p>{endDate}</p>
             <ul>
-                {details.map((item) => (
-                    <li>{item}</li>
+                {details.map((item, index) => (
+                    <li key={index}>{item}</li>
                 ))}
             </ul>
+        </>
+    );
+}
+
+function Employment({ position, company, startDate, endDate, details }) {
+    return (
+        <>
+            <p>{position}</p>
+            <p>{company}</p>
+            <p>{startDate}</p>
+            <p>{endDate}</p>
+            {details.map((item, index) => (
+                <li key={index}>{item}</li>
+            ))}
         </>
     );
 }
@@ -30,6 +43,7 @@ function Education({ address, schoolName, startDate, endDate, details }) {
 function Preview(props) {
     const personalInfo = props.personalInfo;
     const educationInfo = props.educationInfo;
+    const employmentInfo = props.employmentInfo;
 
     return (
         <div>
@@ -48,6 +62,18 @@ function Preview(props) {
                     <Education
                         address={item.address}
                         schoolName={item.schoolName}
+                        startDate={item.startDate}
+                        endDate={item.endDate}
+                        details={item.details}
+                        key={index}
+                    />
+                );
+            })}
+            {employmentInfo.map((item, index) => {
+                return (
+                    <Employment
+                        position={item.position}
+                        company={item.company}
                         startDate={item.startDate}
                         endDate={item.endDate}
                         details={item.details}

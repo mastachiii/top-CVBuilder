@@ -51,6 +51,7 @@ function App() {
         edit: ({ key, value, index }) => {
             employmentHandlers.copy[index][key] = value;
             employmentHandlers.update();
+            console.log(employmentInfo)
         },
     };
 
@@ -61,7 +62,11 @@ function App() {
                 educationHandlers={educationHandlers}
                 employmentHandlers={employmentHandlers}
             />
-            <Preview personalInfo={personalInfo} educationInfo={educationInfo} />
+            <Preview
+                personalInfo={personalInfo}
+                educationInfo={educationInfo}
+                employmentInfo={employmentInfo}
+            />
         </>
     );
 }
