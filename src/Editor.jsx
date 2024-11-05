@@ -68,26 +68,48 @@ function Education({ handlers, index }) {
 }
 
 function Employment({ handlers, index }) {
+    const [details, setDetails] = useState({
+        text: '',
+        list: [],
+    });
+    const handlePosition = (e) =>
+        handlers.edit({ value: e.target.value, index: index, key: 'position' });
+    const handleCompany = (e) =>
+        handlers.edit({ value: e.target.value, index: index, key: 'company' });
+    const handleStartDate = (e) =>
+        handlers.edit({ value: e.target.value, index: index, key: 'startDate' });
+    const handleEndDate = (e) =>
+        handlers.edit({ value: e.target.value, index: index, key: 'endDate' });
+    const handleDetailsChange = (e) => setDetails({ ...details, text: e.target.value });
+    const handleDetailsSubmit = (e) => {
+        const detailCopy = { ...details };
+        detailCopy.list.push(detailCopy.text);
+        detailCopy.text = '';
+        handlers.edit({ value: detailCopy.list, index: index, key: 'details' });
+        setDetails(detailCopy);
+    };
+
     return (
         <div>
-            <Input text='Position' onChange={null} />
-            <Input text='Company' onChange={null} />
-            <Input text='Start Date' onChange={null} />
-            <Input text='End Date' onChange={null} />
-            <Input text='Details' onChange={null} />
+            <Input text='Position' onChange={handlePosition} />
+            <Input text='Company' onChange={handleCompany} />
+            <Input text='Start Date' onChange={handleStartDate} />
+            <Input text='End Date' onChange={handleEndDate} />
+            <Input text='Details' onChange={handleDetailsChange} value={details.text} />
+            <Button text='Add' onClick={handleDetailsSubmit} />
         </div>
     );
 }
 
 function Editor({ personalHandlers, educationHandlers, employmentHandlers }) {
-    const makeForm = ({ handlers, Component }) => {
+    const makeForm = ({ handlers, Component, text }) => {
         const form = [];
 
         for (let i = 0; i < handlers.numberOfItems; i++) {
             form.push(
                 <Fragment key={i}>
                     <h3>
-                        Education:
+                        {text}:
                         <Component handlers={handlers} index={i} />
                     </h3>
                 </Fragment>
@@ -96,7 +118,7 @@ function Editor({ personalHandlers, educationHandlers, employmentHandlers }) {
 
         return form;
     };
-    
+
     return (
         <div>
             <Button text='Add Education' onClick={educationHandlers.add} />
@@ -104,8 +126,8 @@ function Editor({ personalHandlers, educationHandlers, employmentHandlers }) {
             <h3>
                 Personal Information: <Personal handlers={personalHandlers} />
             </h3>
-            {makeForm({ handlers: educationHandlers, Component: Education })}
-            {makeForm({ handlers: employmentHandlers, Component: Employment })}
+            {makeForm({ handlers: educationHandlers, Component: Education, text: 'Education' })}
+            {makeForm({ handlers: employmentHandlers, Component: Employment, text: 'Employment' })}
         </div>
     );
 }

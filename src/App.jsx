@@ -47,7 +47,6 @@ function App() {
                 details: [],
             });
             employmentHandlers.update();
-            console.log(employmentInfo);
         },
         edit: ({ key, value, index }) => {
             employmentHandlers.copy[index][key] = value;
