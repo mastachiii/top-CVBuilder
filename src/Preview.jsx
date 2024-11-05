@@ -56,6 +56,7 @@ function Project({ name, link, details }) {
     );
 }
 
+
 function Preview(props) {
     const personalInfo = props.personalInfo;
     const educationInfo = props.educationInfo;
@@ -86,6 +87,7 @@ function Preview(props) {
                     />
                 );
             })}
+            <h1>Employment</h1>
             {employmentInfo.map((item, index) => {
                 return (
                     <Employment
@@ -98,9 +100,13 @@ function Preview(props) {
                     />
                 );
             })}
+            <h1>Projects</h1>
             {projectsInfo.map((item, index) => {
-                return <Project name={item.name} link={item.link} details={item.details} />;
+                return (
+                    <Project name={item.name} link={item.link} details={item.details} key={index} />
+                );
             })}
+            <h1>Technical Info</h1>
         </div>
     );
 }

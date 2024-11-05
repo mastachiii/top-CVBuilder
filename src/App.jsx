@@ -8,6 +8,11 @@ function App() {
     const [educationInfo, setEducationInfo] = useState([]);
     const [employmentInfo, setEmploymentInfo] = useState([]);
     const [projectsInfo, setProjectsInfo] = useState([]);
+    const [technicalInfo, setTechnicalInfo] = useState({
+        languages: [],
+        frameworks: [],
+        tools: [],
+    });
     const personalHandlers = {
         copy: { ...personalInfo },
         update: () => setPersonalInfo(personalHandlers.copy),
@@ -72,6 +77,16 @@ function App() {
             console.log(projectsInfo);
         },
     };
+    const technicalHandlers = {
+        copy: { ...technicalInfo },
+        numberOfItems: 1,
+        update: () => setTechnicalInfo(technicalHandlers.copy),
+        edit: ({ key, value }) => {
+            technicalHandlers.copy[key].push(value);
+            technicalHandlers.update();
+            console.log(technicalInfo);
+        },
+    };
 
     return (
         <>
@@ -80,6 +95,7 @@ function App() {
                 educationHandlers={educationHandlers}
                 employmentHandlers={employmentHandlers}
                 projectHandlers={projectHandlers}
+                technicalHandlers={technicalHandlers}
             />
             <Preview
                 personalInfo={personalInfo}

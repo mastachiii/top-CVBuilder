@@ -47,7 +47,7 @@ function Education({ handlers, index }) {
     const handleEndDate = (e) =>
         handlers.edit({ value: e.target.value, index: index, key: 'endDate' });
     const handleDetailsChange = (e) => setDetails({ ...details, text: e.target.value });
-    const handleDetailsSubmit = (e) => {
+    const handleDetailsSubmit = () => {
         const detailCopy = { ...details };
         detailCopy.list.push(detailCopy.text);
         detailCopy.text = '';
@@ -81,7 +81,7 @@ function Employment({ handlers, index }) {
     const handleEndDate = (e) =>
         handlers.edit({ value: e.target.value, index: index, key: 'endDate' });
     const handleDetailsChange = (e) => setDetails({ ...details, text: e.target.value });
-    const handleDetailsSubmit = (e) => {
+    const handleDetailsSubmit = () => {
         const detailCopy = { ...details };
         detailCopy.list.push(detailCopy.text);
         detailCopy.text = '';
@@ -109,7 +109,7 @@ function Project({ handlers, index }) {
     const handleName = (e) => handlers.edit({ value: e.target.value, index: index, key: 'name' });
     const handleLink = (e) => handlers.edit({ value: e.target.value, index: index, key: 'link' });
     const handleDetailsChange = (e) => setDetails({ ...details, text: e.target.value });
-    const handleDetailsSubmit = (e) => {
+    const handleDetailsSubmit = () => {
         const detailCopy = { ...details };
         detailCopy.list.push(detailCopy.text);
         detailCopy.text = '';
@@ -121,13 +121,61 @@ function Project({ handlers, index }) {
         <div>
             <Input text='Name' onChange={handleName} />
             <Input text='Link' onChange={handleLink} />
-            <Input text='Details' onChange={handleDetailsChange} />
+            <Input text='Details' onChange={handleDetailsChange} value={details.text} />
             <Button text='Add' onClick={handleDetailsSubmit} />
         </div>
     );
 }
 
-function Editor({ personalHandlers, educationHandlers, employmentHandlers, projectHandlers }) {
+function Technical({ handlers }) {
+    const [details, setDetails] = useState({
+        language: '',
+        framework: '',
+        tools: '',
+    });
+    const handleLanguageChange = (e) => {
+        setDetails({ ...details, language: e.target.value });
+    };
+    const handleLanguageSubmit = () => {
+        handlers.edit({ key: 'languages', value: details.language });
+    };
+    const handleFrameworkChange = (e) => {
+        setDetails({ ...details, framework: e.target.value });
+    };
+    const handleFrameworkSubmit = () => {
+        handlers.edit({ key: 'frameworks', value: details.framework });
+    };
+    const handleToolsChange = (e) => {
+        setDetails({ ...details, tools: e.target.value });
+    };
+    const handleToolsSubmit = () => {
+        handlers.edit({ key: 'tools', value: details.tools });
+    };
+
+    return (
+        <>
+            <Input text='Languages' onChange={handleLanguageChange} value={details.language} />
+            <Button text='add' onClick={handleLanguageSubmit} />
+            <Input
+                text='Frameworks and Libraries'
+                onChange={handleFrameworkChange}
+                value={details.framework}
+            />
+            <Button text='add' onClick={handleFrameworkSubmit} />
+            <Input text='Tools' onChange={handleToolsChange} value={details.tools} />
+            <Button text='add' onClick={handleToolsSubmit} />
+        </>
+    );
+}
+
+function Editor({
+    personalHandlers,
+    educationHandlers,
+    employmentHandlers,
+    projectHandlers,
+    technicalHandlers,
+}) {
+    console.log(technicalHandlers);
     const makeForm = ({ handlers, Component, text }) => {
         const form = [];
 
@@ -156,6 +204,11 @@ function Editor({ personalHandlers, educationHandlers, employmentHandlers, proje
             {makeForm({ handlers: educationHandlers, Component: Education, text: 'Education' })}
             {makeForm({ handlers: employmentHandlers, Component: Employment, text: 'Employment' })}
             {makeForm({ handlers: projectHandlers, Component: Project, text: 'Project' })}
+            {makeForm({
+                handlers: technicalHandlers,
+                Component: Technical,
+                text: 'Technical Skills',
+            })}
         </div>
     );
 }
