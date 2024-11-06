@@ -74,7 +74,7 @@ function Preview(props) {
     const technicalInfo = props.technicalInfo;
 
     return (
-        <div>
+        <div className="preview">
             <h1>Personal Information</h1>
             <Person
                 firstName={personalInfo.firstName}

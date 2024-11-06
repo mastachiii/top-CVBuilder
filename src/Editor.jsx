@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { act, useState } from 'react';
 import { Fragment } from 'react';
 
 function Input({ type = 'text', text, value, onChange }) {
@@ -22,14 +22,14 @@ function Personal({ handlers }) {
     const handleLinkedIn = (e) => handlers.edit({ key: 'linkedIn', value: e.target.value });
 
     return (
-        <>
+        <div>
             <Input text='First Name' onChange={handleFirstName} />
             <Input text='Last Name' onChange={handleLastName} />
             <Input text='Email' onChange={handleEmail} />
             <Input text='Phone' onChange={handlePhone} />
             <Input text='Github' onChange={handleGitHub} />
             <Input text='Linked In' onChange={handleLinkedIn} />
-        </>
+        </div>
     );
 }
 
@@ -175,7 +175,12 @@ function Editor({
     projectHandlers,
     technicalHandlers,
 }) {
-    console.log(technicalHandlers);
+    const [activeIndex, setActiveIndex] = useState(null);
+    const handleIndexChange = (index) => {
+        return function () {
+            activeIndex === index ? setActiveIndex(null) : setActiveIndex(index);
+        };
+    };
     const makeForm = ({ handlers, Component, text }) => {
         const form = [];
 
@@ -194,12 +199,13 @@ function Editor({
     };
 
     return (
-        <div>
+        <div className='editor'>
             <Button text='Add Education' onClick={educationHandlers.add} />
             <Button text='Add Employment' onClick={employmentHandlers.add} />
             <Button text='Add Project' onClick={projectHandlers.add} />
-            <h3>
-                Personal Information: <Personal handlers={personalHandlers} />
+            <h3 onClick={handleIndexChange(0)}>
+                Personal Information:{' '}
+                {activeIndex === 0 && <Personal handlers={personalHandlers} />}
             </h3>
             {makeForm({ handlers: educationHandlers, Component: Education, text: 'Education' })}
             {makeForm({ handlers: employmentHandlers, Component: Employment, text: 'Employment' })}

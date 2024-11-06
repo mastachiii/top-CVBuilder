@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './styles.css'
 import { personalInfo as info } from './data';
 import { Editor } from './Editor';
 import { Preview } from './Preview';

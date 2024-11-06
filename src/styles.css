@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+}
+
+h3:hover {
+    cursor: pointer;
+}
+
+#root {
+    display: flex;
+    gap: 3rem;
+    padding: 1rem;
+    justify-content: center;
+}
+
+.editor {
+    background-color: pink;
+    width: 30%;
+}
+
+.preview {
+    background-color: gold;
+    width: 60%;
+}
