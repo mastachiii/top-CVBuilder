@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './styles.css';
 import { personalInfo as info } from './data';
-import { Editor } from './Editor';
+import { Editor } from './editor';
 import { Preview } from './Preview';
 
 function App() {
@@ -41,7 +41,6 @@ function App() {
             educationHandlers.update();
         },
         pop: (targetIndex) => {
-            console.log(targetIndex);
             educationHandlers.copy = educationHandlers.copy.filter(
                 (item, index) => index !== targetIndex
             );
@@ -67,6 +66,12 @@ function App() {
             employmentHandlers.copy[index][key] = value;
             employmentHandlers.update();
         },
+        pop: (targetIndex) => {
+            employmentHandlers.copy = employmentHandlers.copy.filter(
+                (item, index) => index !== targetIndex
+            );
+            employmentHandlers.update();
+        },
     };
     const projectHandlers = {
         copy: Array.from(projectsInfo),
@@ -82,6 +87,12 @@ function App() {
         },
         edit: ({ key, value, index }) => {
             projectHandlers.copy[index][key] = value;
+            projectHandlers.update();
+        },
+        pop: (targetIndex) => {
+            projectHandlers.copy = projectHandlers.copy.filter(
+                (item, index) => index !== targetIndex
+            );
             projectHandlers.update();
         },
     };
