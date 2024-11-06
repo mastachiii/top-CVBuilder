@@ -37,13 +37,18 @@ input {
     gap: calc(8rem / 16);
 }
 
-.education-unfocus {
+.education-unfocus,
+.employment-unfocus,
+.project-unfocus {
     display: flex;
     justify-content: space-between;
     margin: 1rem 1rem 0 2rem;
 }
 
-.education {
+.education,
+.employment,
+.project,
+.technical {
     margin: 0 0 1rem 0;
     > div {
         width: 90%;

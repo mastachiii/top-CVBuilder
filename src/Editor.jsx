@@ -123,17 +123,21 @@ function Employment({ handlers, index, activeIndex, activeHandler }) {
             <div className='employment'>
                 <Input text='Position' onChange={handlePosition} />
                 <Input text='Company' onChange={handleCompany} />
-                <Input text='Start Date' onChange={handleStartDate} />
-                <Input text='End Date' onChange={handleEndDate} />
-                <Input text='Details' onChange={handleDetailsChange} value={details.text} />
-                <Button text='Add' onClick={handleDetailsSubmit} />
-                <Button text='Delete' onClick={handleDetailsDelete} />
+                <div>
+                    <Input text='Start Date' onChange={handleStartDate} />
+                    <Input text='End Date' onChange={handleEndDate} />
+                </div>
+                <div>
+                    <Input text='Details' onChange={handleDetailsChange} value={details.text} />
+                    <Button text='Add' onClick={handleDetailsSubmit} />
+                    <Button text='Delete' onClick={handleDetailsDelete} />
+                </div>
                 <Button text='Done' onClick={activeHandler(null)} />
             </div>
         );
     } else {
         return (
-            <div className='employment'>
+            <div className='employment-unfocus'>
                 <p onClick={activeHandler(index)}>Employment {index + 1}</p>
                 <Button text='Delete' onClick={handleDelete} />
             </div>
@@ -178,7 +182,7 @@ function Project({ handlers, index, activeIndex, activeHandler }) {
         );
     } else {
         return (
-            <div className='project'>
+            <div className='project-unfocus'>
                 <p onClick={activeHandler(index)}>Project {index + 1}</p>
                 <Button text='Delete' onClick={handleDelete} />
             </div>
@@ -217,19 +221,25 @@ function Technical({ handlers }) {
 
     return (
         <div className='technical'>
-            <Input text='Languages' onChange={handleLanguageChange} value={details.language} />
-            <Button text='add' onClick={handleLanguageSubmit} />
-            <Button text='delete' onClick={handleDetailsDelete('languages')} />
-            <Input
-                text='Frameworks and Libraries'
-                onChange={handleFrameworkChange}
-                value={details.framework}
-            />
-            <Button text='add' onClick={handleFrameworkSubmit} />
-            <Button text='delete' onClick={handleDetailsDelete('frameworks')} />
-            <Input text='Tools' onChange={handleToolsChange} value={details.tools} />
-            <Button text='add' onClick={handleToolsSubmit} />
-            <Button text='delete' onClick={handleDetailsDelete('tools')} />
+            <div>
+                <Input text='Languages' onChange={handleLanguageChange} value={details.language} />
+                <Button text='add' onClick={handleLanguageSubmit} />
+                <Button text='delete' onClick={handleDetailsDelete('languages')} />
+            </div>
+            <div>
+                <Input
+                    text='Frameworks and Libraries'
+                    onChange={handleFrameworkChange}
+                    value={details.framework}
+                />
+                <Button text='add' onClick={handleFrameworkSubmit} />
+                <Button text='delete' onClick={handleDetailsDelete('frameworks')} />
+            </div>
+            <div>
+                <Input text='Tools' onChange={handleToolsChange} value={details.tools} />
+                <Button text='add' onClick={handleToolsSubmit} />
+                <Button text='delete' onClick={handleDetailsDelete('tools')} />
+            </div>
         </div>
     );
 }
@@ -245,7 +255,11 @@ function Editor({
     const [educationIndex, setEducationIndex] = useState(null);
     const [employmentIndex, setEmploymentIndex] = useState(null);
     const [projectIndex, setProjectIndex] = useState(null);
-    const handleGeneralIndex = (index) => () => setGeneralIndex(index);
+    const handleGeneralIndex = (index) => () => {
+        // ENABLE IN PRODUCTION
+        // generalIndex === index ? setGeneralIndex(null) : setGeneralIndex(index);
+        setGeneralIndex(index);
+    };
     const handleEducationIndex = (index) => () => setEducationIndex(index);
     const handleEmploymentIndex = (index) => () => setEmploymentIndex(index);
     const handleProjectIndex = (index) => () => setProjectIndex(index);
@@ -282,36 +296,30 @@ function Editor({
                     activeHandler: handleEducationIndex,
                 })}
             {generalIndex === 1 && <Button text='Add Education' onClick={educationHandlers.add} />}
-            <h3 onClick={handleGeneralIndex(2)}>
-                Employment:
-                {generalIndex === 2 &&
-                    makeForm({
-                        handlers: employmentHandlers,
-                        Component: Employment,
-                        text: 'Employment',
-                        activeIndex: employmentIndex,
-                        activeHandler: handleEmploymentIndex,
-                    })}
-                {generalIndex === 2 && (
-                    <Button text='Add Employment' onClick={employmentHandlers.add} />
-                )}
-            </h3>
-            <h3 onClick={handleGeneralIndex(3)}>
-                Projects:
-                {generalIndex === 3 &&
-                    makeForm({
-                        handlers: projectHandlers,
-                        Component: Project,
-                        text: 'Project',
-                        activeIndex: projectIndex,
-                        activeHandler: handleProjectIndex,
-                    })}
-                {generalIndex === 3 && <Button text='Add Project' onClick={projectHandlers.add} />}
-            </h3>
-            <h3 onClick={handleGeneralIndex(4)}>
-                Technical Skill:
-                {generalIndex === 4 && <Technical handlers={technicalHandlers} />}
-            </h3>
+            <h3 onClick={handleGeneralIndex(2)}>Employment:</h3>
+            {generalIndex === 2 &&
+                makeForm({
+                    handlers: employmentHandlers,
+                    Component: Employment,
+                    text: 'Employment',
+                    activeIndex: employmentIndex,
+                    activeHandler: handleEmploymentIndex,
+                })}
+            {generalIndex === 2 && (
+                <Button text='Add Employment' onClick={employmentHandlers.add} />
+            )}
+            <h3 onClick={handleGeneralIndex(3)}>Projects:</h3>
+            {generalIndex === 3 &&
+                makeForm({
+                    handlers: projectHandlers,
+                    Component: Project,
+                    text: 'Project',
+                    activeIndex: projectIndex,
+                    activeHandler: handleProjectIndex,
+                })}
+            {generalIndex === 3 && <Button text='Add Project' onClick={projectHandlers.add} />}
+            <h3 onClick={handleGeneralIndex(4)}>Technical Skill:</h3>
+            {generalIndex === 4 && <Technical handlers={technicalHandlers} />}
         </div>
     );
 }
