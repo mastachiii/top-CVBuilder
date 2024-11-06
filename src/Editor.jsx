@@ -161,12 +161,13 @@ function Technical({ handlers }) {
     const handleToolsChange = (e) => {
         setDetails({ ...details, tools: e.target.value });
     };
-    const handleToolsSubmit = () => {
+    const handleToolsSubmit = (key) => (key) => {
+        setDetails({ ...details, [key]: '' });
         handlers.edit({ key: 'tools', value: details.tools });
     };
 
     return (
-        <>
+        <div>
             <Input text='Languages' onChange={handleLanguageChange} value={details.language} />
             <Button text='add' onClick={handleLanguageSubmit} />
             <Input
@@ -177,7 +178,7 @@ function Technical({ handlers }) {
             <Button text='add' onClick={handleFrameworkSubmit} />
             <Input text='Tools' onChange={handleToolsChange} value={details.tools} />
             <Button text='add' onClick={handleToolsSubmit} />
-        </>
+        </div>
     );
 }
 
@@ -259,9 +260,11 @@ function Editor({
                         activeIndex: projectIndex,
                         activeHandler: handleProjectIndex,
                     })}
-                {generalIndex === 3 && (
-                    <Button text='Add Project' onClick={projectHandlers.add} />
-                )}
+                {generalIndex === 3 && <Button text='Add Project' onClick={projectHandlers.add} />}
+            </h3>
+            <h3 onClick={handleGeneralIndex(4)}>
+                Technical Skill:
+                {generalIndex === 4 && <Technical handlers={technicalHandlers} />}
             </h3>
         </div>
     );
