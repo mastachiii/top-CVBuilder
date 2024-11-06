@@ -68,11 +68,11 @@ function Education({ handlers, index, activeIndex, activeHandler }) {
             </div>
         );
     } else {
-        return <p onClick={activeHandler(index)}>test</p>;
+        return <p onClick={activeHandler(index)}>Education {index + 1}</p>;
     }
 }
 
-function Employment({ handlers, index }) {
+function Employment({ handlers, index, activeIndex, activeHandler }) {
     const [details, setDetails] = useState({
         text: '',
         list: [],
@@ -94,16 +94,20 @@ function Employment({ handlers, index }) {
         setDetails(detailCopy);
     };
 
-    return (
-        <div>
-            <Input text='Position' onChange={handlePosition} />
-            <Input text='Company' onChange={handleCompany} />
-            <Input text='Start Date' onChange={handleStartDate} />
-            <Input text='End Date' onChange={handleEndDate} />
-            <Input text='Details' onChange={handleDetailsChange} value={details.text} />
-            <Button text='Add' onClick={handleDetailsSubmit} />
-        </div>
-    );
+    if (index === activeIndex) {
+        return (
+            <div>
+                <Input text='Position' onChange={handlePosition} />
+                <Input text='Company' onChange={handleCompany} />
+                <Input text='Start Date' onChange={handleStartDate} />
+                <Input text='End Date' onChange={handleEndDate} />
+                <Input text='Details' onChange={handleDetailsChange} value={details.text} />
+                <Button text='Add' onClick={handleDetailsSubmit} />
+            </div>
+        );
+    } else {
+        return <p onClick={activeHandler(index)}>Employment {index + 1}</p>;
+    }
 }
 
 function Project({ handlers, index }) {
@@ -182,8 +186,12 @@ function Editor({
 }) {
     const [generalIndex, setGeneralIndex] = useState(null);
     const [educationIndex, setEducationIndex] = useState(null);
+    const [employmentIndex, setEmploymentIndex] = useState(null);
+    const [projectIndex, setProjectIndex] = useState(null);
     const handleGeneralIndex = (index) => () => setGeneralIndex(index);
     const handleEducationIndex = (index) => () => setEducationIndex(index);
+    const handleEmploymentIndex = (index) => () => setEmploymentIndex(index);
+    const handleProjectIndex = (index) => () => setProjectIndex(index);
     const makeForm = ({ handlers, Component, activeIndex, activeHandler }) => {
         const form = [];
 
@@ -221,6 +229,20 @@ function Editor({
                     })}
                 {generalIndex === 1 && (
                     <Button text='Add Education' onClick={educationHandlers.add} />
+                )}
+            </h3>
+            <h3 onClick={handleGeneralIndex(2)}>
+                Employment:
+                {generalIndex === 2 &&
+                    makeForm({
+                        handlers: employmentHandlers,
+                        Component: Employment,
+                        text: 'Employment',
+                        activeIndex: employmentIndex,
+                        activeHandler: handleEmploymentIndex,
+                    })}
+                {generalIndex === 2 && (
+                    <Button text='Add Employment' onClick={employmentHandlers.add} />
                 )}
             </h3>
         </div>
