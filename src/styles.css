@@ -2,8 +2,14 @@
     box-sizing: border-box;
 }
 
-h3:hover {
+h3:hover,
+p:hover {
+    color: rebeccapurple;
     cursor: pointer;
+}
+input {
+    width: 90%;
+    padding: calc(5rem / 16);
 }
 
 #root {
@@ -16,6 +22,34 @@ h3:hover {
 .editor {
     background-color: pink;
     width: 30%;
+    text-align: center;
+}
+
+.personal,
+.education,
+.employment,
+.project,
+.technical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem 0 0 0;
+    gap: calc(8rem / 16);
+}
+
+.education-unfocus {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 1rem 0 2rem;
+}
+
+.education {
+    margin: 0 0 1rem 0;
+    > div {
+        width: 90%;
+        display: flex;
+        gap: calc(6rem / 16);
+    }
 }
 
 .preview {

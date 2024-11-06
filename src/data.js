@@ -1,6 +1,5 @@
 const personalInfo = {
-    firstName: '',
-    lastName: '',
+    fullName: '',
     email: '',
     phone: '',
     gitHub: '',

@@ -14,17 +14,15 @@ function Button({ type = 'button', text, onClick }) {
 }
 
 function Personal({ handlers }) {
-    const handleFirstName = (e) => handlers.edit({ key: 'firstName', value: e.target.value });
-    const handleLastName = (e) => handlers.edit({ key: 'lastName', value: e.target.value });
+    const handleFullName = (e) => handlers.edit({ key: 'fullName', value: e.target.value });
     const handleEmail = (e) => handlers.edit({ key: 'email', value: e.target.value });
     const handlePhone = (e) => handlers.edit({ key: 'phone', value: e.target.value });
     const handleGitHub = (e) => handlers.edit({ key: 'gitHub', value: e.target.value });
     const handleLinkedIn = (e) => handlers.edit({ key: 'linkedIn', value: e.target.value });
 
     return (
-        <div>
-            <Input text='First Name' onChange={handleFirstName} />
-            <Input text='Last Name' onChange={handleLastName} />
+        <div className='personal'>
+            <Input text='Full Name' onChange={handleFullName} />
             <Input text='Email' onChange={handleEmail} />
             <Input text='Phone' onChange={handlePhone} />
             <Input text='Github' onChange={handleGitHub} />
@@ -65,20 +63,24 @@ function Education({ handlers, index, activeIndex, activeHandler }) {
 
     if (activeIndex === index) {
         return (
-            <div>
+            <div className='education'>
                 <Input text='Address' onChange={handleAddress} />
                 <Input text='School Name' onChange={handleSchoolName} />
-                <Input text='Start Date' onChange={handleStartDate} />
-                <Input text='End Date' onChange={handleEndDate} />
-                <Input text='Details' onChange={handleDetailsChange} value={details.text} />
-                <Button text='Add' onClick={handleDetailsSubmit} />
-                <Button text='Delete' onClick={handleDetailsDelete} />
+                <div>
+                    <Input text='Start Date' onChange={handleStartDate} />
+                    <Input text='End Date' onChange={handleEndDate} />
+                </div>
+                <div>
+                    <Input text='Details' onChange={handleDetailsChange} value={details.text} />
+                    <Button text='Add' onClick={handleDetailsSubmit} />
+                    <Button text='Delete' onClick={handleDetailsDelete} />
+                </div>
                 <Button text='Done' onClick={activeHandler(null)} />
             </div>
         );
     } else {
         return (
-            <div style={{ display: 'flex' }}>
+            <div className='education-unfocus'>
                 <p onClick={activeHandler(index)}>Education {index + 1}</p>
                 <Button text='Delete' onClick={handleDelete} />
             </div>
@@ -118,7 +120,7 @@ function Employment({ handlers, index, activeIndex, activeHandler }) {
 
     if (index === activeIndex) {
         return (
-            <div>
+            <div className='employment'>
                 <Input text='Position' onChange={handlePosition} />
                 <Input text='Company' onChange={handleCompany} />
                 <Input text='Start Date' onChange={handleStartDate} />
@@ -131,7 +133,7 @@ function Employment({ handlers, index, activeIndex, activeHandler }) {
         );
     } else {
         return (
-            <div style={{ display: 'flex' }}>
+            <div className='employment'>
                 <p onClick={activeHandler(index)}>Employment {index + 1}</p>
                 <Button text='Delete' onClick={handleDelete} />
             </div>
@@ -165,7 +167,7 @@ function Project({ handlers, index, activeIndex, activeHandler }) {
 
     if (index === activeIndex) {
         return (
-            <div>
+            <div className='project'>
                 <Input text='Name' onChange={handleName} />
                 <Input text='Link' onChange={handleLink} />
                 <Input text='Details' onChange={handleDetailsChange} value={details.text} />
@@ -176,7 +178,7 @@ function Project({ handlers, index, activeIndex, activeHandler }) {
         );
     } else {
         return (
-            <div style={{ display: 'flex' }}>
+            <div className='project'>
                 <p onClick={activeHandler(index)}>Project {index + 1}</p>
                 <Button text='Delete' onClick={handleDelete} />
             </div>
@@ -194,35 +196,40 @@ function Technical({ handlers }) {
         setDetails({ ...details, language: e.target.value });
     };
     const handleLanguageSubmit = () => {
+        setDetails({ ...details, language: '' });
         handlers.edit({ key: 'languages', value: details.language });
     };
     const handleFrameworkChange = (e) => {
         setDetails({ ...details, framework: e.target.value });
     };
     const handleFrameworkSubmit = () => {
+        setDetails({ ...details, framework: '' });
         handlers.edit({ key: 'frameworks', value: details.framework });
     };
     const handleToolsChange = (e) => {
         setDetails({ ...details, tools: e.target.value });
     };
-    const handleToolsSubmit = (key) => (key) => {
-        setDetails({ ...details, [key]: '' });
+    const handleToolsSubmit = () => {
+        setDetails({ ...details, tools: '' });
         handlers.edit({ key: 'tools', value: details.tools });
     };
-    const handleDelete = () => handlers.pop(index);
+    const handleDetailsDelete = (key) => () => handlers.pop(key);
 
     return (
-        <div>
+        <div className='technical'>
             <Input text='Languages' onChange={handleLanguageChange} value={details.language} />
             <Button text='add' onClick={handleLanguageSubmit} />
+            <Button text='delete' onClick={handleDetailsDelete('languages')} />
             <Input
                 text='Frameworks and Libraries'
                 onChange={handleFrameworkChange}
                 value={details.framework}
             />
             <Button text='add' onClick={handleFrameworkSubmit} />
+            <Button text='delete' onClick={handleDetailsDelete('frameworks')} />
             <Input text='Tools' onChange={handleToolsChange} value={details.tools} />
             <Button text='add' onClick={handleToolsSubmit} />
+            <Button text='delete' onClick={handleDetailsDelete('tools')} />
         </div>
     );
 }
@@ -263,24 +270,18 @@ function Editor({
 
     return (
         <div className='editor'>
-            <h3 onClick={handleGeneralIndex(0)}>
-                Personal Information:{' '}
-                {generalIndex === 0 && <Personal handlers={personalHandlers} />}
-            </h3>
-            <h3 onClick={handleGeneralIndex(1)}>
-                Education:
-                {generalIndex === 1 &&
-                    makeForm({
-                        handlers: educationHandlers,
-                        Component: Education,
-                        text: 'Education',
-                        activeIndex: educationIndex,
-                        activeHandler: handleEducationIndex,
-                    })}
-                {generalIndex === 1 && (
-                    <Button text='Add Education' onClick={educationHandlers.add} />
-                )}
-            </h3>
+            <h3 onClick={handleGeneralIndex(0)}>Personal Information: </h3>
+            {generalIndex === 0 && <Personal handlers={personalHandlers} />}
+            <h3 onClick={handleGeneralIndex(1)}>Education:</h3>
+            {generalIndex === 1 &&
+                makeForm({
+                    handlers: educationHandlers,
+                    Component: Education,
+                    text: 'Education',
+                    activeIndex: educationIndex,
+                    activeHandler: handleEducationIndex,
+                })}
+            {generalIndex === 1 && <Button text='Add Education' onClick={educationHandlers.add} />}
             <h3 onClick={handleGeneralIndex(2)}>
                 Employment:
                 {generalIndex === 2 &&
