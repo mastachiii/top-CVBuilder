@@ -174,9 +174,11 @@ function Project({ handlers, index, activeIndex, activeHandler }) {
             <div className='project'>
                 <Input text='Name' onChange={handleName} />
                 <Input text='Link' onChange={handleLink} />
-                <Input text='Details' onChange={handleDetailsChange} value={details.text} />
-                <Button text='Add' onClick={handleDetailsSubmit} />
-                <Button text='Delete' onClick={handleDetailsDelete} />
+                <div>
+                    <Input text='Details' onChange={handleDetailsChange} value={details.text} />
+                    <Button text='Add' onClick={handleDetailsSubmit} />
+                    <Button text='Delete' onClick={handleDetailsDelete} />
+                </div>
                 <Button text='Done' onClick={activeHandler(null)} />
             </div>
         );
@@ -257,8 +259,8 @@ function Editor({
     const [projectIndex, setProjectIndex] = useState(null);
     const handleGeneralIndex = (index) => () => {
         // ENABLE IN PRODUCTION
-        // generalIndex === index ? setGeneralIndex(null) : setGeneralIndex(index);
-        setGeneralIndex(index);
+        generalIndex === index ? setGeneralIndex(null) : setGeneralIndex(index);
+        // setGeneralIndex(index);
     };
     const handleEducationIndex = (index) => () => setEducationIndex(index);
     const handleEmploymentIndex = (index) => () => setEmploymentIndex(index);
