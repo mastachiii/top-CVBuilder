@@ -110,7 +110,7 @@ function Employment({ handlers, index, activeIndex, activeHandler }) {
     }
 }
 
-function Project({ handlers, index }) {
+function Project({ handlers, index, activeIndex, activeHandler }) {
     const [details, setDetails] = useState({
         text: '',
         list: [],
@@ -126,14 +126,18 @@ function Project({ handlers, index }) {
         setDetails(detailCopy);
     };
 
-    return (
-        <div>
-            <Input text='Name' onChange={handleName} />
-            <Input text='Link' onChange={handleLink} />
-            <Input text='Details' onChange={handleDetailsChange} value={details.text} />
-            <Button text='Add' onClick={handleDetailsSubmit} />
-        </div>
-    );
+    if (index === activeIndex) {
+        return (
+            <div>
+                <Input text='Name' onChange={handleName} />
+                <Input text='Link' onChange={handleLink} />
+                <Input text='Details' onChange={handleDetailsChange} value={details.text} />
+                <Button text='Add' onClick={handleDetailsSubmit} />
+            </div>
+        );
+    } else {
+        return <p onClick={activeHandler(index)}>Project {index + 1}</p>;
+    }
 }
 
 function Technical({ handlers }) {
@@ -243,6 +247,20 @@ function Editor({
                     })}
                 {generalIndex === 2 && (
                     <Button text='Add Employment' onClick={employmentHandlers.add} />
+                )}
+            </h3>
+            <h3 onClick={handleGeneralIndex(3)}>
+                Projects:
+                {generalIndex === 3 &&
+                    makeForm({
+                        handlers: projectHandlers,
+                        Component: Project,
+                        text: 'Project',
+                        activeIndex: projectIndex,
+                        activeHandler: handleProjectIndex,
+                    })}
+                {generalIndex === 3 && (
+                    <Button text='Add Project' onClick={projectHandlers.add} />
                 )}
             </h3>
         </div>
