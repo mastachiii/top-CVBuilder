@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './styles.css'
+import './styles.css';
 import { personalInfo as info } from './data';
 import { Editor } from './Editor';
 import { Preview } from './Preview';
@@ -40,6 +40,14 @@ function App() {
             educationHandlers.copy[index][key] = value;
             educationHandlers.update();
         },
+        pop: (targetIndex) => {
+            console.log(targetIndex);
+            educationHandlers.copy = educationHandlers.copy.filter(
+                (item, index) => index !== targetIndex
+            );
+            console.log(educationHandlers.copy);
+            educationHandlers.update();
+        },
     };
     const employmentHandlers = {
         copy: Array.from(employmentInfo),
@@ -75,7 +83,6 @@ function App() {
         edit: ({ key, value, index }) => {
             projectHandlers.copy[index][key] = value;
             projectHandlers.update();
-            console.log(projectsInfo);
         },
     };
     const technicalHandlers = {
@@ -85,7 +92,6 @@ function App() {
         edit: ({ key, value }) => {
             technicalHandlers.copy[key].push(value);
             technicalHandlers.update();
-            console.log(technicalInfo);
         },
     };
 

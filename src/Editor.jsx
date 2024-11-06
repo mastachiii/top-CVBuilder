@@ -47,6 +47,13 @@ function Education({ handlers, index, activeIndex, activeHandler }) {
     const handleEndDate = (e) =>
         handlers.edit({ value: e.target.value, index: index, key: 'endDate' });
     const handleDetailsChange = (e) => setDetails({ ...details, text: e.target.value });
+    const handleDetailsDelete = () => {
+        const detailCopy = { ...details };
+        detailCopy.list.pop();
+        detailCopy.text = '';
+        handlers.edit({ value: detailCopy.list, index: index, key: 'details' });
+        setDetails(detailCopy);
+    };
     const handleDetailsSubmit = () => {
         const detailCopy = { ...details };
         detailCopy.list.push(detailCopy.text);
@@ -54,6 +61,7 @@ function Education({ handlers, index, activeIndex, activeHandler }) {
         handlers.edit({ value: detailCopy.list, index: index, key: 'details' });
         setDetails(detailCopy);
     };
+    const handleDelete = () => handlers.pop(index);
 
     if (activeIndex === index) {
         return (
@@ -64,11 +72,17 @@ function Education({ handlers, index, activeIndex, activeHandler }) {
                 <Input text='End Date' onChange={handleEndDate} />
                 <Input text='Details' onChange={handleDetailsChange} value={details.text} />
                 <Button text='Add' onClick={handleDetailsSubmit} />
+                <Button text='Delete' onClick={handleDetailsDelete} />
                 <Button text='Done' onClick={activeHandler(null)} />
             </div>
         );
     } else {
-        return <p onClick={activeHandler(index)}>Education {index + 1}</p>;
+        return (
+            <div style={{ display: 'flex' }}>
+                <p onClick={activeHandler(index)}>Education {index + 1}</p>
+                <Button text='Delete' onClick={handleDelete} />
+            </div>
+        );
     }
 }
 
@@ -86,6 +100,13 @@ function Employment({ handlers, index, activeIndex, activeHandler }) {
     const handleEndDate = (e) =>
         handlers.edit({ value: e.target.value, index: index, key: 'endDate' });
     const handleDetailsChange = (e) => setDetails({ ...details, text: e.target.value });
+    const handleDetailsDelete = () => {
+        const detailCopy = { ...details };
+        detailCopy.list.pop();
+        detailCopy.text = '';
+        handlers.edit({ value: detailCopy.list, index: index, key: 'details' });
+        setDetails(detailCopy);
+    };
     const handleDetailsSubmit = () => {
         const detailCopy = { ...details };
         detailCopy.list.push(detailCopy.text);
@@ -103,6 +124,7 @@ function Employment({ handlers, index, activeIndex, activeHandler }) {
                 <Input text='End Date' onChange={handleEndDate} />
                 <Input text='Details' onChange={handleDetailsChange} value={details.text} />
                 <Button text='Add' onClick={handleDetailsSubmit} />
+                <Button text='Delete' onClick={handleDetailsDelete} />
             </div>
         );
     } else {
@@ -118,6 +140,13 @@ function Project({ handlers, index, activeIndex, activeHandler }) {
     const handleName = (e) => handlers.edit({ value: e.target.value, index: index, key: 'name' });
     const handleLink = (e) => handlers.edit({ value: e.target.value, index: index, key: 'link' });
     const handleDetailsChange = (e) => setDetails({ ...details, text: e.target.value });
+    const handleDetailsDelete = () => {
+        const detailCopy = { ...details };
+        detailCopy.list.pop();
+        detailCopy.text = '';
+        handlers.edit({ value: detailCopy.list, index: index, key: 'details' });
+        setDetails(detailCopy);
+    };
     const handleDetailsSubmit = () => {
         const detailCopy = { ...details };
         detailCopy.list.push(detailCopy.text);
@@ -133,6 +162,7 @@ function Project({ handlers, index, activeIndex, activeHandler }) {
                 <Input text='Link' onChange={handleLink} />
                 <Input text='Details' onChange={handleDetailsChange} value={details.text} />
                 <Button text='Add' onClick={handleDetailsSubmit} />
+                <Button text='Delete' onClick={handleDetailsDelete} />
             </div>
         );
     } else {
