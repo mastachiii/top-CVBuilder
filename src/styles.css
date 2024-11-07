@@ -1,10 +1,21 @@
 @font-face {
     font-family: 'SF Pro';
-    src: url(./assets/fonts/SF-Pro.ttf);
+    src: url(./assets/fonts/SF-Pro-Display-Light.otf);
+    font-weight: 300;
+}
+
+:root {
+    --main-color-white: #fffbff;
+    --main-color-black: #28262c;
+    --main-color-grey: #dde1e4;
+    --main-color-green: #5b9279;
+    --main-color-red: #fe5f55;
 }
 
 * {
     box-sizing: border-box;
+    font-family: 'SF Pro';
+    /* margin: 0; */
 }
 
 h3:hover,
@@ -12,6 +23,11 @@ p:hover {
     color: rebeccapurple;
     cursor: pointer;
 }
+
+html {
+    background-color: var(--main-color-white);
+}
+
 input {
     width: 90%;
     padding: calc(5rem / 16);
@@ -25,9 +41,19 @@ input {
 }
 
 .editor {
-    background-color: pink;
     width: 30%;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
+    box-shadow: 2px 5px 50px -26px rgba(40, 38, 44, 0.75);
+    border-radius: 1rem;
+
+    > h3 {
+        border: solid 2px black;
+        font-size: 1.5rem;
+        margin: 0;
+    }
 }
 
 .personal,

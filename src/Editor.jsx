@@ -98,7 +98,7 @@ function Employment({ handlers, index, activeIndex, activeHandler }) {
     const handleCompany = (e) =>
         handlers.edit({ value: e.target.value, index: index, key: 'company' });
     const handleStartDate = (e) =>
-        handlers.edit({ value: e.target.value, index: index, key: 'startDate' });
+        handlers.edit({ value: e.target.value, index: index, key: 'startDate' }); 1
     const handleEndDate = (e) =>
         handlers.edit({ value: e.target.value, index: index, key: 'endDate' });
     const handleDetailsChange = (e) => setDetails({ ...details, text: e.target.value });
