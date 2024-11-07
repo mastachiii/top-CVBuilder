@@ -12,6 +12,7 @@
 
 @keyframes slide-in {
     0% {
+        background-color: transparent;
         scale: 0.5;
     }
 

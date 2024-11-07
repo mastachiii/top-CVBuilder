@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toggleActiveClass } from './data';
 import { Fragment } from 'react';
 
 function Input({ type = 'text', text, value, onChange }) {
@@ -289,12 +290,30 @@ function Editor({
         <div className='editor'>
             <div className='title'>
                 <img src='public/personal-information/personal-information.svg' className='icon' />
-                <h3 onClick={handleGeneralIndex(0)}>Personal Information</h3>
+                <h3
+                    onClick={toggleActiveClass({
+                        callback: handleGeneralIndex(0),
+                        className: 'title',
+                        targetClass: 'active',
+                        targetIndex: 0,
+                    })}
+                >
+                    Personal Information
+                </h3>
             </div>
             {generalIndex === 0 && <Personal handlers={personalHandlers} />}
             <div className='title'>
                 <img src='public/education/education.svg' className='icon' />
-                <h3 onClick={handleGeneralIndex(1)}>Education</h3>
+                <h3
+                    onClick={toggleActiveClass({
+                        callback: handleGeneralIndex(1),
+                        className: 'title',
+                        targetClass: 'active',
+                        targetIndex: 1,
+                    })}
+                >
+                    Education
+                </h3>
             </div>
             {generalIndex === 1 &&
                 makeForm({
