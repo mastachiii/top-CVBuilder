@@ -6,7 +6,7 @@ const personalInfo = {
     linkedIn: '',
 };
 
-function toggleActiveClass({ callback, className, targetClass, targetIndex }) {
+function activateForm({ callback, className, targetClass, targetIndex }) {
     return () => {
         const prevElement = document.querySelector(`.${targetClass}`);
         const targetElement = document.querySelectorAll(`.${className}`);
@@ -23,4 +23,4 @@ function toggleActiveClass({ callback, className, targetClass, targetIndex }) {
     };
 }
 
-export { personalInfo, toggleActiveClass };
+export { personalInfo, activateForm };

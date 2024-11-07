@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { toggleActiveClass } from './data';
+import { activateForm } from './data';
 import { Fragment } from 'react';
 
 function Input({ type = 'text', text, value, onChange }) {
@@ -291,7 +291,7 @@ function Editor({
             <div className='title icon-personal'>
                 <img src='public/personal-information/personal-information.svg' className='icon' />
                 <h3
-                    onClick={toggleActiveClass({
+                    onClick={activateForm({
                         callback: handleGeneralIndex(0),
                         className: 'title',
                         targetClass: 'active',
@@ -305,7 +305,7 @@ function Editor({
             <div className='title icon-education'>
                 <img src='public/education/education.svg' className='icon' />
                 <h3
-                    onClick={toggleActiveClass({
+                    onClick={activateForm({
                         callback: handleGeneralIndex(1),
                         className: 'title',
                         targetClass: 'active',
@@ -327,7 +327,7 @@ function Editor({
             <div className='title icon-employment'>
                 <img src='public/employment/employment.svg' className='icon' />
                 <h3
-                    onClick={toggleActiveClass({
+                    onClick={activateForm({
                         callback: handleGeneralIndex(2),
                         className: 'title',
                         targetClass: 'active',
@@ -351,7 +351,7 @@ function Editor({
             <div className='title icon-project'>
                 <img src='public/project.svg' className='icon' />
                 <h3
-                    onClick={toggleActiveClass({
+                    onClick={activateForm({
                         callback: handleGeneralIndex(3),
                         className: 'title',
                         targetClass: 'active',
@@ -372,7 +372,16 @@ function Editor({
             {generalIndex === 3 && <Button text='Add Project' onClick={projectHandlers.add} />}
             <div className='title icon-technical'>
                 <img src='public/technical.svg' className='icon' />
-                <h3 onClick={handleGeneralIndex(4)}>Technical Skill</h3>
+                <h3
+                    onClick={activateForm({
+                        callback: handleGeneralIndex(4),
+                        className: 'title',
+                        targetClass: 'active',
+                        targetIndex: 4,
+                    })}
+                >
+                    Technical Skill
+                </h3>
             </div>
             {generalIndex === 4 && <Technical handlers={technicalHandlers} />}
         </div>
