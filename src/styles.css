@@ -10,6 +10,16 @@
     font-weight: 800;
 }
 
+@keyframes slide-in {
+    0% {
+        scale: 0.5;
+    }
+
+    100% {
+        transform: scale(1.5);
+    }
+}
+
 :root {
     --main-color-white: #fffbff;
     --main-color-black: #28262c;
@@ -22,6 +32,7 @@
     box-sizing: border-box;
     font-family: 'SF Pro';
     font-weight: 500;
+    user-select: none;
 }
 
 h3:hover,
@@ -55,6 +66,19 @@ input {
     margin: calc(2rem / 16) 0 0 auto;
 }
 
+.active {
+    > h3,
+    > img {
+        display: none;
+    }
+    pointer-events: none;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(../public/personal-information/personal-information.svg);
+    animation: slide-in 200ms ease-in normal forwards;
+}
+
 .editor {
     width: 30%;
     display: flex;
@@ -66,21 +90,21 @@ input {
 
     > div {
         display: flex;
-        border: solid 2px var(--main-color-white);
+        border: solid 2px transparent;
         border-radius: 2rem;
         padding: 1rem 1rem 1rem calc(8rem / 16);
         transform: scale(1);
-        transition: transform 100ms ease-in-out;
+        transition: transform 100ms ease-out;
         transition: background-color 200ms ease-out;
 
         > h3 {
-            width: fit-content;
             font-size: calc(20rem / 16);
             margin: 0 0 0 calc(7rem / 16);
-            transition: transform 500ms ease-in;
         }
     }
+
     .title:hover {
+        background-color: var(--main-color-black);
         color: white;
         transform: scale(1.2);
 
@@ -89,15 +113,9 @@ input {
         }
 
         > h3 {
+            margin: 0 auto;
             font-weight: 800;
-            transform: translate(40%);
         }
-    }
-    .title:nth-child(odd):hover {
-        background-color: var(--main-color-green);
-    }
-    .title:nth-child(even):hover {
-        background-color: var(--main-color-red);
     }
 }
 
