@@ -24,15 +24,16 @@ function Personal({ handlers }) {
     return (
         <div className='personal'>
             <Input text='Full Name' onChange={handleFullName} value={handlers.copy.fullName} />
-            <Input text='Email' onChange={handleEmail} />
-            <Input text='Phone' onChange={handlePhone} />
-            <Input text='Github' onChange={handleGitHub} />
-            <Input text='Linked In' onChange={handleLinkedIn} />
+            <Input text='Email' onChange={handleEmail} value={handlers.copy.email} />
+            <Input text='Phone' onChange={handlePhone} value={handlers.copy.phone} />
+            <Input text='Github' onChange={handleGitHub} value={handlers.copy.gitHub} />
+            <Input text='Linked In' onChange={handleLinkedIn} value={handlers.copy.linkedIn} />
         </div>
     );
 }
 
 function Education({ handlers, index, activeIndex, activeHandler }) {
+    console.log(handlers.copy);
     const [details, setDetails] = useState({
         text: '',
         list: [],
@@ -65,11 +66,27 @@ function Education({ handlers, index, activeIndex, activeHandler }) {
     if (activeIndex === index) {
         return (
             <div className='education'>
-                <Input text='Address' onChange={handleAddress} />
-                <Input text='School Name' onChange={handleSchoolName} />
+                <Input
+                    text='Address'
+                    onChange={handleAddress}
+                    value={handlers.copy[index].address}
+                />
+                <Input
+                    text='School Name'
+                    onChange={handleSchoolName}
+                    value={handlers.copy[index].schoolName}
+                />
                 <div>
-                    <Input text='Start Date' onChange={handleStartDate} />
-                    <Input text='End Date' onChange={handleEndDate} />
+                    <Input
+                        text='Start Date'
+                        onChange={handleStartDate}
+                        value={handlers.copy[index].startDate}
+                    />
+                    <Input
+                        text='End Date'
+                        onChange={handleEndDate}
+                        value={handlers.copy[index].endDate}
+                    />
                 </div>
                 <div>
                     <Input text='Details' onChange={handleDetailsChange} value={details.text} />
@@ -123,11 +140,27 @@ function Employment({ handlers, index, activeIndex, activeHandler }) {
     if (index === activeIndex) {
         return (
             <div className='employment'>
-                <Input text='Position' onChange={handlePosition} />
-                <Input text='Company' onChange={handleCompany} />
+                <Input
+                    text='Position'
+                    onChange={handlePosition}
+                    value={handlers.copy[index].position}
+                />
+                <Input
+                    text='Company'
+                    onChange={handleCompany}
+                    value={handlers.copy[index].company}
+                />
                 <div>
-                    <Input text='Start Date' onChange={handleStartDate} />
-                    <Input text='End Date' onChange={handleEndDate} />
+                    <Input
+                        text='Start Date'
+                        onChange={handleStartDate}
+                        value={handlers.copy[index].startDate}
+                    />
+                    <Input
+                        text='End Date'
+                        onChange={handleEndDate}
+                        value={handlers.copy[index].endDate}
+                    />
                 </div>
                 <div>
                     <Input text='Details' onChange={handleDetailsChange} value={details.text} />
@@ -174,8 +207,8 @@ function Project({ handlers, index, activeIndex, activeHandler }) {
     if (index === activeIndex) {
         return (
             <div className='project'>
-                <Input text='Name' onChange={handleName} />
-                <Input text='Link' onChange={handleLink} />
+                <Input text='Name' onChange={handleName} value={handlers.copy[index].name} />
+                <Input text='Link' onChange={handleLink} value={handlers.copy[index].link} />
                 <div>
                     <Input text='Details' onChange={handleDetailsChange} value={details.text} />
                     <Button text='Add' onClick={handleDetailsSubmit} />

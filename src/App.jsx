@@ -104,9 +104,10 @@ function App() {
             technicalHandlers.copy[key].push(value);
             technicalHandlers.update();
         },
-        pop: ({key, index}) => {
-            technicalHandlers.copy
-        }
+        pop: (key) => {
+            technicalHandlers.copy[key].pop();
+            technicalHandlers.update();
+        },
     };
 
     return (
