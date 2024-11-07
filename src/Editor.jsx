@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { activateForm } from './data';
+import { activateForm, disableForm } from './data';
 import { Fragment } from 'react';
 
 function Input({ type = 'text', text, value, onChange }) {
@@ -23,7 +23,7 @@ function Personal({ handlers }) {
 
     return (
         <div className='personal'>
-            <Input text='Full Name' onChange={handleFullName} />
+            <Input text='Full Name' onChange={handleFullName} value={handlers.copy.fullName} />
             <Input text='Email' onChange={handleEmail} />
             <Input text='Phone' onChange={handlePhone} />
             <Input text='Github' onChange={handleGitHub} />
@@ -384,6 +384,14 @@ function Editor({
                 </h3>
             </div>
             {generalIndex === 4 && <Technical handlers={technicalHandlers} />}
+            <Button
+                text='done'
+                onClick={disableForm({
+                    callback: handleGeneralIndex(null),
+                    className: 'title',
+                    targetClass: 'active',
+                })}
+            />
         </div>
     );
 }
