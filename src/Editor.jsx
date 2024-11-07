@@ -293,11 +293,8 @@ function Editor({
     const [educationIndex, setEducationIndex] = useState(null);
     const [employmentIndex, setEmploymentIndex] = useState(null);
     const [projectIndex, setProjectIndex] = useState(null);
-    const handleGeneralIndex = (index) => () => {
-        // ENABLE IN PRODUCTION
+    const handleGeneralIndex = (index) => () =>
         generalIndex === index ? setGeneralIndex(null) : setGeneralIndex(index);
-        // setGeneralIndex(index);
-    };
     const handleEducationIndex = (index) => () => setEducationIndex(index);
     const handleEmploymentIndex = (index) => () => setEmploymentIndex(index);
     const handleProjectIndex = (index) => () => setProjectIndex(index);

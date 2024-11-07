@@ -146,7 +146,7 @@ input {
 
 .editor-active {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .personal,
@@ -181,7 +181,7 @@ input {
 .project-unfocus {
     display: flex;
     justify-content: space-between;
-    margin: 1rem 1rem 0 2rem;
+    font-size: calc(20rem / 16);
 }
 
 .education,
