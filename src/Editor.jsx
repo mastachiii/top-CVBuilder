@@ -98,7 +98,8 @@ function Employment({ handlers, index, activeIndex, activeHandler }) {
     const handleCompany = (e) =>
         handlers.edit({ value: e.target.value, index: index, key: 'company' });
     const handleStartDate = (e) =>
-        handlers.edit({ value: e.target.value, index: index, key: 'startDate' }); 1
+        handlers.edit({ value: e.target.value, index: index, key: 'startDate' });
+    1;
     const handleEndDate = (e) =>
         handlers.edit({ value: e.target.value, index: index, key: 'endDate' });
     const handleDetailsChange = (e) => setDetails({ ...details, text: e.target.value });
@@ -286,9 +287,15 @@ function Editor({
 
     return (
         <div className='editor'>
-            <h3 onClick={handleGeneralIndex(0)}>Personal Information: </h3>
+            <div className='title'>
+                <img src='public/personal-information/personal-information.svg' className='icon' />
+                <h3 onClick={handleGeneralIndex(0)}>Personal Information</h3>
+            </div>
             {generalIndex === 0 && <Personal handlers={personalHandlers} />}
-            <h3 onClick={handleGeneralIndex(1)}>Education:</h3>
+            <div className='title'>
+                <img src='public/education/education.svg' className='icon' />
+                <h3 onClick={handleGeneralIndex(1)}>Education</h3>
+            </div>
             {generalIndex === 1 &&
                 makeForm({
                     handlers: educationHandlers,
@@ -298,7 +305,10 @@ function Editor({
                     activeHandler: handleEducationIndex,
                 })}
             {generalIndex === 1 && <Button text='Add Education' onClick={educationHandlers.add} />}
-            <h3 onClick={handleGeneralIndex(2)}>Employment:</h3>
+            <div className='title'>
+                <img src='public/employment/employment.svg' className='icon' />
+                <h3 onClick={handleGeneralIndex(2)}>Employment</h3>
+            </div>
             {generalIndex === 2 &&
                 makeForm({
                     handlers: employmentHandlers,
@@ -310,7 +320,10 @@ function Editor({
             {generalIndex === 2 && (
                 <Button text='Add Employment' onClick={employmentHandlers.add} />
             )}
-            <h3 onClick={handleGeneralIndex(3)}>Projects:</h3>
+            <div className='title'>
+                <img src='public/project.svg' className='icon' />
+                <h3 onClick={handleGeneralIndex(3)}>Projects</h3>
+            </div>
             {generalIndex === 3 &&
                 makeForm({
                     handlers: projectHandlers,
@@ -320,7 +333,10 @@ function Editor({
                     activeHandler: handleProjectIndex,
                 })}
             {generalIndex === 3 && <Button text='Add Project' onClick={projectHandlers.add} />}
-            <h3 onClick={handleGeneralIndex(4)}>Technical Skill:</h3>
+            <div className='title'>
+                <img src='public/technical.svg' className='icon' />
+                <h3 onClick={handleGeneralIndex(4)}>Technical Skill</h3>
+            </div>
             {generalIndex === 4 && <Technical handlers={technicalHandlers} />}
         </div>
     );
