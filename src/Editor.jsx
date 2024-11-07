@@ -6,9 +6,10 @@ function Input({ type = 'text', text, value, onChange }) {
     return <input type={type} placeholder={text} onChange={onChange} value={value}></input>;
 }
 
-function Button({ type = 'button', text, onClick }) {
+function Button({ type = 'button', text, onClick, className }) {
     return (
-        <button type={type} onClick={onClick}>
+        <button type={type} onClick={onClick} className={className}>
+            {' '}
             {text}
         </button>
     );
@@ -26,8 +27,8 @@ function Personal({ handlers }) {
             <Input text='Full Name' onChange={handleFullName} value={handlers.copy.fullName} />
             <Input text='Email' onChange={handleEmail} value={handlers.copy.email} />
             <Input text='Phone' onChange={handlePhone} value={handlers.copy.phone} />
-            <Input text='Github' onChange={handleGitHub} value={handlers.copy.gitHub} />
-            <Input text='Linked In' onChange={handleLinkedIn} value={handlers.copy.linkedIn} />
+            <Input text='GitHub' onChange={handleGitHub} value={handlers.copy.gitHub} />
+            <Input text='LinkedIn' onChange={handleLinkedIn} value={handlers.copy.linkedIn} />
         </div>
     );
 }
@@ -418,12 +419,13 @@ function Editor({
             </div>
             {generalIndex === 4 && <Technical handlers={technicalHandlers} />}
             <Button
-                text='done'
+                text=''
                 onClick={disableForm({
                     callback: handleGeneralIndex(null),
                     className: 'title',
                     targetClass: 'active',
                 })}
+                className={'done-button'}
             />
         </div>
     );
