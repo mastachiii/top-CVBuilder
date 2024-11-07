@@ -12,7 +12,7 @@
 
 @keyframes slide-in {
     0% {
-        background-color: transparent;
+        background: transparent;
         scale: 0.5;
     }
 
@@ -34,6 +34,7 @@
     font-family: 'SF Pro';
     font-weight: 500;
     user-select: none;
+    background-size: 0%;
 }
 
 h3:hover,
@@ -76,7 +77,6 @@ input {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url(../public/personal-information/personal-information.svg);
     animation: slide-in 200ms ease-in normal forwards;
 }
 
@@ -118,6 +118,30 @@ input {
             font-weight: 800;
         }
     }
+}
+
+.icon-personal {
+    background-image: url(../public/personal-information/personal-information.svg);
+}
+
+.icon-education {
+    background-image: url(../public/education/education.svg);
+}
+
+.icon-employment {
+    background-image: url(../public/employment/employment.svg);
+}
+
+.icon-project {
+    background-image: url(../public/project.svg);
+}
+
+.icon-technical {
+    background-image: url(../public/technical.svg);
+}
+
+.editor-active {
+    display: block;
 }
 
 .personal,

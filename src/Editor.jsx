@@ -288,7 +288,7 @@ function Editor({
 
     return (
         <div className='editor'>
-            <div className='title'>
+            <div className='title icon-personal'>
                 <img src='public/personal-information/personal-information.svg' className='icon' />
                 <h3
                     onClick={toggleActiveClass({
@@ -302,7 +302,7 @@ function Editor({
                 </h3>
             </div>
             {generalIndex === 0 && <Personal handlers={personalHandlers} />}
-            <div className='title'>
+            <div className='title icon-education'>
                 <img src='public/education/education.svg' className='icon' />
                 <h3
                     onClick={toggleActiveClass({
@@ -324,9 +324,18 @@ function Editor({
                     activeHandler: handleEducationIndex,
                 })}
             {generalIndex === 1 && <Button text='Add Education' onClick={educationHandlers.add} />}
-            <div className='title'>
+            <div className='title icon-employment'>
                 <img src='public/employment/employment.svg' className='icon' />
-                <h3 onClick={handleGeneralIndex(2)}>Employment</h3>
+                <h3
+                    onClick={toggleActiveClass({
+                        callback: handleGeneralIndex(2),
+                        className: 'title',
+                        targetClass: 'active',
+                        targetIndex: 2,
+                    })}
+                >
+                    Employment
+                </h3>
             </div>
             {generalIndex === 2 &&
                 makeForm({
@@ -339,9 +348,18 @@ function Editor({
             {generalIndex === 2 && (
                 <Button text='Add Employment' onClick={employmentHandlers.add} />
             )}
-            <div className='title'>
+            <div className='title icon-project'>
                 <img src='public/project.svg' className='icon' />
-                <h3 onClick={handleGeneralIndex(3)}>Projects</h3>
+                <h3
+                    onClick={toggleActiveClass({
+                        callback: handleGeneralIndex(3),
+                        className: 'title',
+                        targetClass: 'active',
+                        targetIndex: 3,
+                    })}
+                >
+                    Projects
+                </h3>
             </div>
             {generalIndex === 3 &&
                 makeForm({
@@ -352,7 +370,7 @@ function Editor({
                     activeHandler: handleProjectIndex,
                 })}
             {generalIndex === 3 && <Button text='Add Project' onClick={projectHandlers.add} />}
-            <div className='title'>
+            <div className='title icon-technical'>
                 <img src='public/technical.svg' className='icon' />
                 <h3 onClick={handleGeneralIndex(4)}>Technical Skill</h3>
             </div>
