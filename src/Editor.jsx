@@ -331,7 +331,7 @@ function Editor({
     return (
         <div className='editor'>
             <div className='title icon-personal'>
-                <img src='public/personal-information/personal-information.svg' className='icon' />
+                <img src='/personal-information/personal-information.svg' className='icon' />
                 <h3
                     onClick={activateForm({
                         callback: handleGeneralIndex(0),
@@ -345,7 +345,7 @@ function Editor({
             </div>
             {generalIndex === 0 && <Personal handlers={personalHandlers} />}
             <div className='title icon-education'>
-                <img src='public/education/education.svg' className='icon' />
+                <img src='/education/education.svg' className='icon' />
                 <h3
                     onClick={activateForm({
                         callback: handleGeneralIndex(1),
@@ -369,7 +369,7 @@ function Editor({
                 <Button className='add-button' onClick={educationHandlers.add} />
             )}
             <div className='title icon-employment'>
-                <img src='public/employment/employment.svg' className='icon' />
+                <img src='/employment/employment.svg' className='icon' />
                 <h3
                     onClick={activateForm({
                         callback: handleGeneralIndex(2),
@@ -393,7 +393,7 @@ function Editor({
                 <Button className='add-button' onClick={employmentHandlers.add} />
             )}
             <div className='title icon-project'>
-                <img src='public/project.svg' className='icon' />
+                <img src='/project.svg' className='icon' />
                 <h3
                     onClick={activateForm({
                         callback: handleGeneralIndex(3),
@@ -415,7 +415,7 @@ function Editor({
                 })}
             {generalIndex === 3 && <Button className='add-button' onClick={projectHandlers.add} />}
             <div className='title icon-technical'>
-                <img src='public/technical.svg' className='icon' />
+                <img src='/technical.svg' className='icon' />
                 <h3
                     onClick={activateForm({
                         callback: handleGeneralIndex(4),
