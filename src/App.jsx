@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import './styles.css';
 import { personalInfo as info } from './data';
-import { Editor } from './editor';
+import { Editor } from './Editor';
 import { Preview } from './Preview';
 import { useReactToPrint } from 'react-to-print';
 
