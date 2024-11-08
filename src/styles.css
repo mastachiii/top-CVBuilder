@@ -38,13 +38,48 @@
 }
 
 h3:hover,
-p:hover {
+p:hover,
+button:hover {
     cursor: pointer;
 }
 
 button {
     background: none;
     border: none;
+    transition: transform 200ms ease-out;
+}
+
+.back-button:hover {
+    transform: scale(1.5);
+}
+
+button.back-button {
+    width: fit-content;
+    border: none;
+    padding: 1rem;
+    background-image: url(../public/done.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    align-self: center;
+}
+
+.add-button {
+    width: fit-content;
+    align-self: center;
+    margin: auto 0 2rem 0;
+    padding: 0.8rem;
+    border: solid 1px transparent;
+    border-radius: 1rem;
+    background-image: url(../public/add.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: transform 200ms ease;
+}
+
+.add-button:hover {
+    transform: scale(1.2);
+    background-color: var(--main-color-green);
+    border: dashed 1px var(--main-color-black);
 }
 
 html {
@@ -146,7 +181,7 @@ input {
 
 .editor-active {
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: space-between;
 }
 
 .personal,
@@ -172,6 +207,9 @@ input {
 
     > input:focus {
         transform: scale(1.2);
+        font-weight: 800;
+        border: none;
+        outline: solid 2px var(--main-color-black);
         box-shadow: -3px 15px 27px -8px rgba(40, 38, 44, 0.38);
     }
 }
@@ -180,8 +218,35 @@ input {
 .employment-unfocus,
 .project-unfocus {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    background-color: var(--main-color-grey);
+    margin: 1rem 0;
+    border-radius: 5rem;
     font-size: calc(20rem / 16);
+
+    > button {
+        display: none;
+    }
+}
+
+.education-unfocus:hover,
+.employment-unfocus:hover,
+.project-unfocus:hover {
+    justify-content: space-between;
+    background-color: var(--main-color-black);
+    > button {
+        display: block;
+        background-image: url(../public/delete-general.svg);
+    }
+
+    > p {
+        color: transparent;
+        padding: calc(3rem / 16);
+        background-image: url(../public/edit.svg);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 }
 
 .education,
@@ -194,21 +259,6 @@ input {
         display: flex;
         gap: calc(6rem / 16);
     }
-}
-
-.done-button {
-    width: 8%;
-    padding: calc(15rem / 16);
-    background-image: url(../public/done.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
-    align-self: center;
-    transition: transform 200ms ease-out;
-}
-
-.done-button:hover {
-    cursor: pointer;
-    transform: scale(1.5);
 }
 
 .preview {

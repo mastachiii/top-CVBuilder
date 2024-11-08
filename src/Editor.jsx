@@ -354,7 +354,9 @@ function Editor({
                     activeIndex: educationIndex,
                     activeHandler: handleEducationIndex,
                 })}
-            {generalIndex === 1 && <Button text='Add Education' onClick={educationHandlers.add} />}
+            {generalIndex === 1 && (
+                <Button className='add-button' onClick={educationHandlers.add} />
+            )}
             <div className='title icon-employment'>
                 <img src='public/employment/employment.svg' className='icon' />
                 <h3
@@ -377,7 +379,7 @@ function Editor({
                     activeHandler: handleEmploymentIndex,
                 })}
             {generalIndex === 2 && (
-                <Button text='Add Employment' onClick={employmentHandlers.add} />
+                <Button className='add-button' onClick={employmentHandlers.add} />
             )}
             <div className='title icon-project'>
                 <img src='public/project.svg' className='icon' />
@@ -400,7 +402,7 @@ function Editor({
                     activeIndex: projectIndex,
                     activeHandler: handleProjectIndex,
                 })}
-            {generalIndex === 3 && <Button text='Add Project' onClick={projectHandlers.add} />}
+            {generalIndex === 3 && <Button className='add-button' onClick={projectHandlers.add} />}
             <div className='title icon-technical'>
                 <img src='public/technical.svg' className='icon' />
                 <h3
@@ -422,7 +424,7 @@ function Editor({
                     className: 'title',
                     targetClass: 'active',
                 })}
-                className={'done-button'}
+                className={'back-button'}
             />
         </div>
     );
