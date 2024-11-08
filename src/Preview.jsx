@@ -35,11 +35,13 @@ function Education({ address, schoolName, startDate, endDate, details }) {
 
 function Employment({ position, company, startDate, endDate, details }) {
     return (
-        <div className="preview-employment">
+        <div className='preview-employment'>
             <div>
                 <p>{position}</p>
                 <p>{company}</p>
-                <p>{startDate} - {endDate}</p>
+                <p>
+                    {startDate} - {endDate}
+                </p>
             </div>
             <ul>
                 {details.map((item, index) => (
@@ -52,7 +54,7 @@ function Employment({ position, company, startDate, endDate, details }) {
 
 function Project({ name, link, details }) {
     return (
-        <>
+        <div className='preview-projects'>
             <p>{name}</p>
             <a href={link}>{link}</a>
             <ul>
@@ -60,17 +62,19 @@ function Project({ name, link, details }) {
                     <li key={index}>{item}</li>
                 ))}
             </ul>
-        </>
+        </div>
     );
 }
 
 function Technical({ languages, frameworks, tools }) {
     return (
-        <ul>
-            <li>Languages: {languages.join(', ')}</li>
-            <li>Frameworks and Libraries: {frameworks.join(', ')}</li>
-            <li>Tools: {tools.join(', ')}</li>
-        </ul>
+        <div className='preview-technical'>
+            <ul>
+                <li>Languages: {languages.join(', ')}</li>
+                <li>Frameworks and Libraries: {frameworks.join(', ')}</li>
+                <li>Tools: {tools.join(', ')}</li>
+            </ul>
+        </div>
     );
 }
 
@@ -116,13 +120,13 @@ function Preview(props) {
                     />
                 );
             })}
-            <h1>Projects</h1>
+            <h4>Projects</h4>
             {projectsInfo.map((item, index) => {
                 return (
                     <Project name={item.name} link={item.link} details={item.details} key={index} />
                 );
             })}
-            <h1>Technical Info</h1>
+            <h4>Technical Info</h4>
             <Technical
                 languages={technicalInfo.languages}
                 frameworks={technicalInfo.frameworks}

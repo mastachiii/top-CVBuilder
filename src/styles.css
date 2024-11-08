@@ -51,6 +51,7 @@ a {
     text-decoration: none;
     color: var(--main-color-black);
     font-style: italic;
+    pointer-events: none;
 }
 
 .back-button:hover {
@@ -302,10 +303,10 @@ input {
 }
 
 .preview {
-    background-color: #5b9279;
     width: 40%;
     height: 90vh;
     padding: 1rem;
+    border: solid 1px var(--main-color-black);
     font-family: 'Times New Roman', Times, serif;
 
     > h4 {
@@ -334,20 +335,20 @@ input {
 }
 
 .preview-education,
-.preview-employment {
+.preview-employment,
+.preview-projects {
     display: flex;
     flex-direction: column;
+
+    p {
+        width: 30%;
+        margin: calc(5rem / 16) 0 0 0;
+        font-weight: bold;
+    }
 
     > div {
         display: flex;
         justify-content: space-between;
-        margin: calc(5rem / 16) 0 0 0;
-        font-weight: bold;
-
-        > p {
-            width: 30%;
-            margin: 0;
-        }
 
         > p:nth-of-type(2) {
             text-align: center;
@@ -363,5 +364,15 @@ input {
     }
 }
 
-.preview-projects {
+.preview-projects,
+.preview-technical {
+    p,
+    a {
+        margin-left: calc(6rem / 16);
+    }
+
+    ul {
+        margin: calc(5rem / 16) 0 0 0;
+        padding: 0 0 0 calc(25rem / 16);
+    }
 }
