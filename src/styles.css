@@ -47,6 +47,12 @@ button {
     transition: transform 200ms ease-out;
 }
 
+a {
+    text-decoration: none;
+    color: var(--main-color-black);
+    font-style: italic;
+}
+
 .back-button:hover {
     transform: scale(1.5);
 }
@@ -296,15 +302,15 @@ input {
 }
 
 .preview {
+    background-color: #5b9279;
     width: 40%;
-    min-height: 90vh;
+    height: 90vh;
     padding: 1rem;
     font-family: 'Times New Roman', Times, serif;
-    background-color: gold;
 
     > h4 {
-        margin: 0 0 0 0;
-        padding: 0 0 0 calc(5rem / 16);
+        margin: 1rem 0 0 0;
+        padding: 0 0 calc(2rem / 16) calc(5rem / 16);
         border-bottom: solid 1px var(--main-color-black);
     }
 }
@@ -316,7 +322,6 @@ input {
     > div {
         width: 30%;
         font-size: 0.8rem;
-        color: rgba(0, 0, 0, 0.747);
     }
 
     > div:nth-of-type(2) {
@@ -328,7 +333,8 @@ input {
     }
 }
 
-.preview-education {
+.preview-education,
+.preview-employment {
     display: flex;
     flex-direction: column;
 
@@ -353,10 +359,9 @@ input {
     }
 
     ul {
-        margin: calc(5rem / 16) 0 0 0;
+        margin: calc(5rem / 16) 0 calc(5rem / 16) 0;
     }
+}
 
-    li {
-        color: rgba(0, 0, 0, 0.747);
-    }
+.preview-projects {
 }

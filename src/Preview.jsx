@@ -16,7 +16,7 @@ function Person({ fullName, email, phone, gitHub, linkedIn }) {
 
 function Education({ address, schoolName, startDate, endDate, details }) {
     return (
-        <div className='preview-education   '>
+        <div className='preview-education'>
             <div>
                 <p>{address}</p>
                 <p>{schoolName}</p>
@@ -35,17 +35,18 @@ function Education({ address, schoolName, startDate, endDate, details }) {
 
 function Employment({ position, company, startDate, endDate, details }) {
     return (
-        <>
-            <p>{position}</p>
-            <p>{company}</p>
-            <p>{startDate} - {endDate}</p>
-            <p>{endDate}</p>
+        <div className="preview-employment">
+            <div>
+                <p>{position}</p>
+                <p>{company}</p>
+                <p>{startDate} - {endDate}</p>
+            </div>
             <ul>
                 {details.map((item, index) => (
                     <li key={index}>{item}</li>
                 ))}
             </ul>
-        </>
+        </div>
     );
 }
 
@@ -102,7 +103,7 @@ function Preview(props) {
                     />
                 );
             })}
-            <h1>Employment</h1>
+            <h4>Employment</h4>
             {employmentInfo.map((item, index) => {
                 return (
                     <Employment
