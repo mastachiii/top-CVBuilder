@@ -86,7 +86,7 @@ function Preview(props) {
     const technicalInfo = props.technicalInfo;
 
     return (
-        <div className='preview'>
+        <div className='preview' ref={props.innerRef}>
             <Person
                 fullName={personalInfo.fullName}
                 email={personalInfo.email}

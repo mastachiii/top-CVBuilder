@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import './styles.css';
 import { personalInfo as info } from './data';
 import { Editor } from './editor';
 import { Preview } from './Preview';
+import { useReactToPrint } from 'react-to-print';
 
 function App() {
     const [personalInfo, setPersonalInfo] = useState(info);
@@ -44,7 +45,6 @@ function App() {
             educationHandlers.copy = educationHandlers.copy.filter(
                 (item, index) => index !== targetIndex
             );
-            console.log(educationHandlers.copy);
             educationHandlers.update();
         },
     };
@@ -109,23 +109,35 @@ function App() {
             technicalHandlers.update();
         },
     };
+    const contentRef = useRef(null);
+    const print = useReactToPrint({ contentRef });
 
     return (
         <>
-            <Editor
-                personalHandlers={personalHandlers}
-                educationHandlers={educationHandlers}
-                employmentHandlers={employmentHandlers}
-                projectHandlers={projectHandlers}
-                technicalHandlers={technicalHandlers}
-            />
-            <Preview
-                personalInfo={personalInfo}
-                educationInfo={educationInfo}
-                employmentInfo={employmentInfo}
-                projectsInfo={projectsInfo}
-                technicalInfo={technicalInfo}
-            />
+            <div>
+                <Editor
+                    personalHandlers={personalHandlers}
+                    educationHandlers={educationHandlers}
+                    employmentHandlers={employmentHandlers}
+                    projectHandlers={projectHandlers}
+                    technicalHandlers={technicalHandlers}
+                />
+                <Preview
+                    personalInfo={personalInfo}
+                    educationInfo={educationInfo}
+                    employmentInfo={employmentInfo}
+                    projectsInfo={projectsInfo}
+                    technicalInfo={technicalInfo}
+                    innerRef={contentRef}
+                />
+
+                <button onClick={print} className='pdf'>
+                    PDF
+                </button>
+            </div>
+            <a className='github' href='https://github.com/mastachiii' target='blank'>
+                GITHUB
+            </a>
         </>
     );
 }

@@ -13,7 +13,7 @@
 @keyframes slide-in {
     0% {
         background: transparent;
-        scale: 0.5;
+        transform: scale(0.5);
     }
 
     100% {
@@ -127,9 +127,14 @@ input {
 
 #root {
     display: flex;
-    gap: 3rem;
-    padding: 1rem;
-    justify-content: center;
+    flex-direction: column;
+    > div {
+        width: 100%;
+        display: flex;
+        gap: 3rem;
+        padding: 1rem;
+        justify-content: center;
+    }
 }
 
 .icon {
@@ -230,6 +235,7 @@ input {
     align-items: center;
     margin: 0 0 auto 0;
     gap: calc(30rem / 16);
+    animation: editor-slide-in 2s 1 ease;
 
     input {
         width: 80%;
@@ -302,77 +308,116 @@ input {
     }
 }
 
-.preview {
-    width: 40%;
-    height: 90vh;
-    padding: 1rem;
-    border: solid 1px var(--main-color-black);
-    font-family: 'Times New Roman', Times, serif;
+@media screen, print {
+    .preview {
+        width: 40%;
+        min-height: 90vh;
+        padding: 1rem;
+        border: solid 1px var(--main-color-black);
+        font-family: 'Times New Roman', Times, serif;
 
-    > h4 {
-        margin: 1rem 0 0 0;
-        padding: 0 0 calc(2rem / 16) calc(5rem / 16);
-        border-bottom: solid 1px var(--main-color-black);
-    }
-}
-
-.preview-personal {
-    display: flex;
-    margin: 0 0 1rem 0;
-
-    > div {
-        width: 30%;
-        font-size: 0.8rem;
+        > h4 {
+            margin: 1rem 0 0 0;
+            padding: 0 0 calc(2rem / 16) calc(5rem / 16);
+            border-bottom: solid 1px var(--main-color-black);
+        }
     }
 
-    > div:nth-of-type(2) {
-        text-align: end;
-    }
-
-    > h2 {
-        margin: 0 auto;
-    }
-}
-
-.preview-education,
-.preview-employment,
-.preview-projects {
-    display: flex;
-    flex-direction: column;
-
-    p {
-        width: 30%;
-        margin: calc(5rem / 16) 0 0 0;
-        font-weight: bold;
-    }
-
-    > div {
+    .preview-personal {
         display: flex;
-        justify-content: space-between;
+        margin: 0 0 1rem 0;
 
-        > p:nth-of-type(2) {
-            text-align: center;
+        > div {
+            width: 30%;
+            font-size: 0.8rem;
         }
 
-        > p:nth-of-type(3) {
+        > div:nth-of-type(2) {
             text-align: end;
         }
+
+        > h2 {
+            margin: 0 auto;
+            text-align: center;
+        }
     }
 
-    ul {
-        margin: calc(5rem / 16) 0 calc(5rem / 16) 0;
+    .preview-education,
+    .preview-employment,
+    .preview-projects {
+        display: flex;
+        flex-direction: column;
+
+        p {
+            width: 30%;
+            margin: calc(5rem / 16) 0 0 0;
+            font-weight: bold;
+        }
+
+        > div {
+            display: flex;
+            justify-content: space-between;
+
+            > p:nth-of-type(2) {
+                text-align: center;
+            }
+
+            > p:nth-of-type(3) {
+                text-align: end;
+            }
+        }
+
+        ul {
+            margin: calc(5rem / 16) 0 calc(5rem / 16) 0;
+        }
+    }
+
+    .preview-projects,
+    .preview-technical {
+        p,
+        a {
+            margin-left: calc(6rem / 16);
+        }
+
+        ul {
+            margin: calc(5rem / 16) 0 0 0;
+            padding: 0 0 0 calc(25rem / 16);
+        }
     }
 }
 
-.preview-projects,
-.preview-technical {
-    p,
-    a {
-        margin-left: calc(6rem / 16);
-    }
+.pdf,
+.github {
+    align-self: center;
+    padding: 1.3rem;
+    color: transparent;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 300ms ease;
+}
 
-    ul {
-        margin: calc(5rem / 16) 0 0 0;
-        padding: 0 0 0 calc(25rem / 16);
+.pdf {
+    background-image: url(../public/pdf.svg);
+}
+
+.pdf:hover {
+    transform: scale(1.1);
+}
+
+.github {
+    padding: 0.3rem;
+    pointer-events: all;
+    background-image: url(../public/github.svg);
+}
+
+.github:hover {
+    transform: scale(1.2);
+}
+
+@media print {
+    .preview {
+        width: 100%;
+        border: none;
     }
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { activateForm, disableForm } from './data';
+import { activateForm, disableForm } from './dom';
 import { Fragment } from 'react';
 
 function Input({ type = 'text', text, value, onChange }) {
@@ -34,7 +34,6 @@ function Personal({ handlers }) {
 }
 
 function Education({ handlers, index, activeIndex, activeHandler }) {
-    console.log(handlers.copy);
     const [details, setDetails] = useState({
         text: '',
         list: [],
