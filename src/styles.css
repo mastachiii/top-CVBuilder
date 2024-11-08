@@ -31,8 +31,6 @@
 
 * {
     box-sizing: border-box;
-    font-family: 'SF Pro';
-    font-weight: 500;
     user-select: none;
     background-size: 0%;
 }
@@ -157,18 +155,21 @@ input {
     padding: 1rem;
     box-shadow: 2px 5px 50px -26px rgba(40, 38, 44, 0.75);
     border-radius: 1rem;
+    font-family: 'SF Pro';
 
     > div {
         display: flex;
         border: solid 2px transparent;
         border-radius: 2rem;
         padding: 1rem 1rem 1rem calc(8rem / 16);
+        margin: 0 0 2rem 0;
         transform: scale(1);
         transition: transform 100ms ease-out;
         transition: background-color 200ms ease-out;
 
         > h3 {
             font-size: calc(25rem / 16);
+            font-weight: 500;
             margin: 0 0 0 calc(12rem / 16);
         }
     }
@@ -214,11 +215,11 @@ input {
     justify-content: space-between;
 }
 
-.personal,
-.education,
-.employment,
-.project,
-.technical {
+.editor-personal,
+.editor-education,
+.editor-employment,
+.editor-project,
+.editor-technical {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -244,9 +245,9 @@ input {
     }
 }
 
-.education-unfocus,
-.employment-unfocus,
-.project-unfocus {
+.editor-education-unfocus,
+.editor-employment-unfocus,
+.editor-project-unfocus {
     display: flex;
     justify-content: center;
     background-color: var(--main-color-grey);
@@ -259,9 +260,9 @@ input {
     }
 }
 
-.education-unfocus:hover,
-.employment-unfocus:hover,
-.project-unfocus:hover {
+.editor-education-unfocus:hover,
+.editor-employment-unfocus:hover,
+.editor-project-unfocus:hover {
     background-color: var(--main-color-black);
 
     > button,
@@ -297,6 +298,12 @@ input {
 }
 
 .preview {
+    font-family: 'Times New Roman', Times, serif;
     background-color: gold;
     width: 60%;
+}
+
+.preview-personal {
+    display: flex;
+    background-color: pink;
 }

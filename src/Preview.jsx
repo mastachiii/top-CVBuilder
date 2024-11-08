@@ -1,12 +1,12 @@
 function Person({ fullName, email, phone, gitHub, linkedIn }) {
     return (
-        <>
+        <div className="preview-personal">
             <p>Email: {email}</p>
             <p>Phone: {phone}</p>
             <h3>{fullName}</h3>
             <p>GitHub: {gitHub}</p>
             <p>LinkedIn: {linkedIn}</p>
-        </>
+        </div>
     );
 }
 
@@ -75,7 +75,6 @@ function Preview(props) {
 
     return (
         <div className='preview'>
-            <h1>Personal Information</h1>
             <Person
                 fullName={personalInfo.fullName}
                 email={personalInfo.email}

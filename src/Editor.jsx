@@ -23,7 +23,7 @@ function Personal({ handlers }) {
     const handleLinkedIn = (e) => handlers.edit({ key: 'linkedIn', value: e.target.value });
 
     return (
-        <div className='personal'>
+        <div className='editor-personal'>
             <Input text='Full Name' onChange={handleFullName} value={handlers.copy.fullName} />
             <Input text='Email' onChange={handleEmail} value={handlers.copy.email} />
             <Input text='Phone' onChange={handlePhone} value={handlers.copy.phone} />
@@ -66,7 +66,7 @@ function Education({ handlers, index, activeIndex, activeHandler }) {
 
     if (activeIndex === index) {
         return (
-            <div className='education'>
+            <div className='editor-education'>
                 <Input
                     text='Address'
                     onChange={handleAddress}
@@ -99,7 +99,7 @@ function Education({ handlers, index, activeIndex, activeHandler }) {
         );
     } else {
         return (
-            <div className='education-unfocus'>
+            <div className='editor-education-unfocus'>
                 <p onClick={activeHandler(index)}>Education {index + 1}</p>
                 <Button text='Delete' onClick={handleDelete} />
             </div>
@@ -140,7 +140,7 @@ function Employment({ handlers, index, activeIndex, activeHandler }) {
 
     if (index === activeIndex) {
         return (
-            <div className='employment'>
+            <div className='editor-employment'>
                 <Input
                     text='Position'
                     onChange={handlePosition}
@@ -173,7 +173,7 @@ function Employment({ handlers, index, activeIndex, activeHandler }) {
         );
     } else {
         return (
-            <div className='employment-unfocus'>
+            <div className='editor-employment-unfocus'>
                 <p onClick={activeHandler(index)}>Employment {index + 1}</p>
                 <Button text='Delete' onClick={handleDelete} />
             </div>
@@ -207,7 +207,7 @@ function Project({ handlers, index, activeIndex, activeHandler }) {
 
     if (index === activeIndex) {
         return (
-            <div className='project'>
+            <div className='editor-project'>
                 <Input text='Name' onChange={handleName} value={handlers.copy[index].name} />
                 <Input text='Link' onChange={handleLink} value={handlers.copy[index].link} />
                 <div>
@@ -220,7 +220,7 @@ function Project({ handlers, index, activeIndex, activeHandler }) {
         );
     } else {
         return (
-            <div className='project-unfocus'>
+            <div className='editor-project-unfocus'>
                 <p onClick={activeHandler(index)}>Project {index + 1}</p>
                 <Button text='Delete' onClick={handleDelete} />
             </div>
@@ -258,7 +258,7 @@ function Technical({ handlers }) {
     const handleDetailsDelete = (key) => () => handlers.pop(key);
 
     return (
-        <div className='technical'>
+        <div className='editor-technical'>
             <div>
                 <Input text='Languages' onChange={handleLanguageChange} value={details.language} />
                 <Button text='add' className='detail-add' onClick={handleLanguageSubmit} />
