@@ -301,19 +301,62 @@ input {
     padding: 1rem;
     font-family: 'Times New Roman', Times, serif;
     background-color: gold;
+
+    > h4 {
+        margin: 0 0 0 0;
+        padding: 0 0 0 calc(5rem / 16);
+        border-bottom: solid 1px var(--main-color-black);
+    }
 }
 
 .preview-personal {
     display: flex;
-    /* justify-content: space-between; */
-    background-color: pink;
+    margin: 0 0 1rem 0;
 
     > div {
         width: 30%;
         font-size: 0.8rem;
-        /* color: var(--main-color-grey); */
+        color: rgba(0, 0, 0, 0.747);
     }
+
+    > div:nth-of-type(2) {
+        text-align: end;
+    }
+
     > h2 {
         margin: 0 auto;
+    }
+}
+
+.preview-education {
+    display: flex;
+    flex-direction: column;
+
+    > div {
+        display: flex;
+        justify-content: space-between;
+        margin: calc(5rem / 16) 0 0 0;
+        font-weight: bold;
+
+        > p {
+            width: 30%;
+            margin: 0;
+        }
+
+        > p:nth-of-type(2) {
+            text-align: center;
+        }
+
+        > p:nth-of-type(3) {
+            text-align: end;
+        }
+    }
+
+    ul {
+        margin: calc(5rem / 16) 0 0 0;
+    }
+
+    li {
+        color: rgba(0, 0, 0, 0.747);
     }
 }
