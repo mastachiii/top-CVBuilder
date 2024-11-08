@@ -1,9 +1,9 @@
 const personalInfo = {
-    fullName: '',
-    email: '',
-    phone: '',
-    gitHub: '',
-    linkedIn: '',
+    fullName: 'John Doe',
+    email: 'johndoenotfound@hotmail.com',
+    phone: '123456789',
+    gitHub: 'gitDoe',
+    linkedIn: 'linkedDoe',
 };
 
 function activateForm({ callback, className, targetClass, targetIndex }) {

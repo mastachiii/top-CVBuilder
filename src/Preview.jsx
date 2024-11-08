@@ -1,11 +1,15 @@
 function Person({ fullName, email, phone, gitHub, linkedIn }) {
     return (
         <div className="preview-personal">
-            <p>Email: {email}</p>
-            <p>Phone: {phone}</p>
-            <h3>{fullName}</h3>
-            <p>GitHub: {gitHub}</p>
-            <p>LinkedIn: {linkedIn}</p>
+            <div>
+                <p>{email}</p>
+                <p>Phone: {phone}</p>
+            </div>
+            <h2>{fullName}</h2>
+            <div>
+                <p>GitHub: {gitHub}</p>
+                <p>LinkedIn: {linkedIn}</p>
+            </div>
         </div>
     );
 }

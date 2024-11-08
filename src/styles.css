@@ -106,7 +106,6 @@ button.back-button {
 }
 
 .form-done {
-    /* padding: calc(10rem / 16); */
     background-image: url(../public/check.svg);
 }
 
@@ -152,11 +151,10 @@ input {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 1rem;
+    padding: 2rem;
     box-shadow: 2px 5px 50px -26px rgba(40, 38, 44, 0.75);
     border-radius: 1rem;
     font-family: 'SF Pro';
-
     > div {
         display: flex;
         border: solid 2px transparent;
@@ -223,7 +221,7 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 0 5rem 0;
+    margin: 0 0 auto 0;
     gap: calc(30rem / 16);
 
     input {
@@ -284,10 +282,10 @@ input {
     }
 }
 
-.education,
-.employment,
-.project,
-.technical {
+.editor-education,
+.editor-employment,
+.editor-project,
+.editor-technical {
     margin: 0 0 1rem 0;
 
     > div {
@@ -298,12 +296,24 @@ input {
 }
 
 .preview {
+    width: 40%;
+    min-height: 90vh;
+    padding: 1rem;
     font-family: 'Times New Roman', Times, serif;
     background-color: gold;
-    width: 60%;
 }
 
 .preview-personal {
     display: flex;
+    /* justify-content: space-between; */
     background-color: pink;
+
+    > div {
+        width: 30%;
+        font-size: 0.8rem;
+        /* color: var(--main-color-grey); */
+    }
+    > h2 {
+        margin: 0 auto;
+    }
 }
