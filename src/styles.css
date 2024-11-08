@@ -67,8 +67,8 @@ button.back-button {
     width: fit-content;
     align-self: center;
     margin: auto 0 2rem 0;
-    padding: 0.8rem;
-    border: solid 1px transparent;
+    padding: 1rem;
+    border: dashed 1px transparent;
     border-radius: 1rem;
     background-image: url(../public/add.svg);
     background-size: contain;
@@ -76,10 +76,40 @@ button.back-button {
     transition: transform 200ms ease;
 }
 
-.add-button:hover {
+.add-button:hover,
+.detail-add:hover,
+.detail-delete:hover,
+.form-done:hover {
     transform: scale(1.2);
-    background-color: var(--main-color-green);
+}
+
+.add-button:hover {
     border: dashed 1px var(--main-color-black);
+}
+
+.detail-add,
+.detail-delete,
+.form-done {
+    width: fit-content;
+    color: transparent;
+    margin: 1rem 0 1rem 0;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: transform 200ms ease;
+}
+
+.detail-add {
+    background-image: url(../public/add.svg);
+}
+
+.detail-delete {
+    background-image: url(../public/minus.svg);
+}
+
+.form-done {
+    /* padding: calc(10rem / 16); */
+    background-image: url(../public/check.svg);
 }
 
 html {
@@ -195,7 +225,7 @@ input {
     margin: 0 0 5rem 0;
     gap: calc(30rem / 16);
 
-    > input {
+    input {
         width: 80%;
         padding: calc(15rem / 16);
         border: solid 1px var(--main-color-grey);
@@ -205,7 +235,7 @@ input {
         transition: box-shadow 200ms ease-in;
     }
 
-    > input:focus {
+    input:focus {
         transform: scale(1.2);
         font-weight: 800;
         border: none;
@@ -220,7 +250,7 @@ input {
     display: flex;
     justify-content: center;
     background-color: var(--main-color-grey);
-    margin: 1rem 0;
+    margin: 2rem 0 1rem 0;
     border-radius: 5rem;
     font-size: calc(20rem / 16);
 
@@ -232,20 +262,24 @@ input {
 .education-unfocus:hover,
 .employment-unfocus:hover,
 .project-unfocus:hover {
-    justify-content: space-between;
     background-color: var(--main-color-black);
+
+    > button,
+    > p {
+        color: transparent;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
     > button {
         display: block;
+        margin: calc(20rem / 16);
         background-image: url(../public/delete-general.svg);
     }
 
     > p {
-        color: transparent;
         padding: calc(3rem / 16);
         background-image: url(../public/edit.svg);
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
     }
 }
 
@@ -254,8 +288,9 @@ input {
 .project,
 .technical {
     margin: 0 0 1rem 0;
+
     > div {
-        width: 90%;
+        width: 80%;
         display: flex;
         gap: calc(6rem / 16);
     }

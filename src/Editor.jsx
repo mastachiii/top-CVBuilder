@@ -91,10 +91,10 @@ function Education({ handlers, index, activeIndex, activeHandler }) {
                 </div>
                 <div>
                     <Input text='Details' onChange={handleDetailsChange} value={details.text} />
-                    <Button text='Add' onClick={handleDetailsSubmit} />
-                    <Button text='Delete' onClick={handleDetailsDelete} />
+                    <Button text='Add' className='detail-add' onClick={handleDetailsSubmit} />
+                    <Button text='Delete' className='detail-delete' onClick={handleDetailsDelete} />
                 </div>
-                <Button text='Done' onClick={activeHandler(null)} />
+                <Button text='Done' className='form-done' onClick={activeHandler(null)} />
             </div>
         );
     } else {
@@ -165,10 +165,10 @@ function Employment({ handlers, index, activeIndex, activeHandler }) {
                 </div>
                 <div>
                     <Input text='Details' onChange={handleDetailsChange} value={details.text} />
-                    <Button text='Add' onClick={handleDetailsSubmit} />
-                    <Button text='Delete' onClick={handleDetailsDelete} />
+                    <Button text='Add' className='detail-add' onClick={handleDetailsSubmit} />
+                    <Button text='Delete' className='detail-delete' onClick={handleDetailsDelete} />
                 </div>
-                <Button text='Done' onClick={activeHandler(null)} />
+                <Button text='Done' className='form-done' onClick={activeHandler(null)} />
             </div>
         );
     } else {
@@ -212,10 +212,10 @@ function Project({ handlers, index, activeIndex, activeHandler }) {
                 <Input text='Link' onChange={handleLink} value={handlers.copy[index].link} />
                 <div>
                     <Input text='Details' onChange={handleDetailsChange} value={details.text} />
-                    <Button text='Add' onClick={handleDetailsSubmit} />
-                    <Button text='Delete' onClick={handleDetailsDelete} />
+                    <Button text='Add' className='detail-add' onClick={handleDetailsSubmit} />
+                    <Button text='Delete' className='detail-delete' onClick={handleDetailsDelete} />
                 </div>
-                <Button text='Done' onClick={activeHandler(null)} />
+                <Button text='Done' className='form-done' onClick={activeHandler(null)} />
             </div>
         );
     } else {
@@ -261,8 +261,12 @@ function Technical({ handlers }) {
         <div className='technical'>
             <div>
                 <Input text='Languages' onChange={handleLanguageChange} value={details.language} />
-                <Button text='add' onClick={handleLanguageSubmit} />
-                <Button text='delete' onClick={handleDetailsDelete('languages')} />
+                <Button text='add' className='detail-add' onClick={handleLanguageSubmit} />
+                <Button
+                    text='delete'
+                    className='detail-delete'
+                    onClick={handleDetailsDelete('languages')}
+                />
             </div>
             <div>
                 <Input
@@ -270,13 +274,21 @@ function Technical({ handlers }) {
                     onChange={handleFrameworkChange}
                     value={details.framework}
                 />
-                <Button text='add' onClick={handleFrameworkSubmit} />
-                <Button text='delete' onClick={handleDetailsDelete('frameworks')} />
+                <Button text='add' className='detail-add' onClick={handleFrameworkSubmit} />
+                <Button
+                    text='delete'
+                    className='detail-delete'
+                    onClick={handleDetailsDelete('frameworks')}
+                />
             </div>
             <div>
                 <Input text='Tools' onChange={handleToolsChange} value={details.tools} />
-                <Button text='add' onClick={handleToolsSubmit} />
-                <Button text='delete' onClick={handleDetailsDelete('tools')} />
+                <Button text='add' className='detail-add' onClick={handleToolsSubmit} />
+                <Button
+                    text='delete'
+                    className='detail-delete'
+                    onClick={handleDetailsDelete('tools')}
+                />
             </div>
         </div>
     );
